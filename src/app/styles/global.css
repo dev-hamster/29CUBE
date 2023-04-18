@@ -1,0 +1,30 @@
+@font-face {
+  font-family: 'SUIT';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_suit@1.0/SUIT-Regular.woff2')
+    format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Campton';
+  src: url('https://fonts.cdnfonts.com/css/campton');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+}
+
+main {
+  width: 390px;
+  height: 100vh;
+  margin: 0 auto;
+}
+
+@media only screen and (max-width: 500px) {
+  main {
+    width: 100%;
+  }
+}

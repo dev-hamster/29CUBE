@@ -1,3 +1,5 @@
+import '@/app/styles/global.css';
+
 export const metadata = {
   title: '29QUBE',
   description: '',

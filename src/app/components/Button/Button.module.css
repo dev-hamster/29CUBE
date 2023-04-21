@@ -1,0 +1,16 @@
+.button {
+  width: 311px;
+  height: 62px;
+  border-radius: 32px;
+  border: none;
+  background: #fff;
+  text-align: center;
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-size: 18px;
+  color: #000;
+}
+.black {
+  background: #000;
+  color: #fff;
+}

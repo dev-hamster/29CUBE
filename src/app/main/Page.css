@@ -1,0 +1,52 @@
+main {
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.test-title {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 17px;
+  line-height: 20px;
+}
+
+.brand-29cm {
+  font-family: 'Campton';
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+}
+
+.test-title-logo {
+  position: relative;
+  padding-top: 20.51%;
+}
+
+.desc {
+  padding-top: 33%;
+}
+
+.gift {
+  position: relative;
+  box-sizing: border-box;
+  /* margin: 0 10.26%; */
+  /* padding-top: 20%; */
+  margin: 0 auto;
+  height: 300px;
+  width: 300px;
+}
+
+.intro-desc {
+  font-family: 'Pretendard';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 24px;
+  color: #8c8c8c;
+}
+
+.step-button {
+  margin-top: 15%;
+}

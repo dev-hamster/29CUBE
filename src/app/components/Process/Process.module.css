@@ -1,0 +1,15 @@
+.process {
+  padding: 0 22px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.gauge {
+  width: 11.2%;
+  height: 5px;
+  background: #f5f5f5;
+  border-radius: 10px;
+}
+.active {
+  background: #000;
+}

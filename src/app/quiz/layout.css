@@ -1,0 +1,32 @@
+.process-container {
+  padding-top: 54px;
+  margin-bottom: 20px;
+}
+
+.quiz-nav {
+  height: 40px;
+  padding: 0 26px;
+}
+
+.quiz-nav .go-back {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 14px;
+  height: 40px;
+}
+
+.quiz-nav .name {
+  margin: 0;
+  padding-top: 12px;
+  text-align: center;
+}
+
+.next-step {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  position: relative;
+  top: 46.4%;
+}

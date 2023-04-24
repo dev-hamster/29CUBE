@@ -1,8 +1,14 @@
+'use client';
 import Form from '@/app/components/Form';
 import Quiz from '@/app/components/Quiz';
 import style from './Keywords.module.scss';
+import { useState } from 'react';
 
 export default function Keywords() {
+  const MAX_ITEM = 3;
+  const [items, setItems] = useState<string[]>([]);
+  // TODO 키워드 최대 선택
+
   return (
     <div>
       <Quiz>

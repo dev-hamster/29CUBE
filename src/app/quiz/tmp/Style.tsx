@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Form from '@/app/components/Form';
 import Quiz from '@/app/components/Quiz';
 import style from './Style.module.scss';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 export default function Style() {
   const MAX_ITEM = 3;

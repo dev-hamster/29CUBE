@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Button from '@/app/components/Button';
-import './Page.css';
+import './page.scss';
 
 export default function Page() {
   return (
@@ -22,7 +22,7 @@ export default function Page() {
         </p>
       </div>
       <div className='step-button'>
-        <Button>테스트 시작하기</Button>
+        <Button theme='white'>테스트 시작하기</Button>
       </div>
     </main>
   );

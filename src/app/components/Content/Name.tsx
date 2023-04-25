@@ -1,7 +1,7 @@
 import Quiz from '@/app/components/Quiz';
 import Form from '@/app/components/Form';
 
-export default function Start() {
+export default function Name({ handleChange }: { handleChange: any }) {
   return (
     <div>
       <Quiz>

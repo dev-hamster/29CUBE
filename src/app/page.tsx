@@ -4,7 +4,7 @@ import './page.scss';
 
 export default function Page() {
   return (
-    <main>
+    <main className='container'>
       <div className='desc'>
         <p className='test-title'>
           <span className='brand-29cm'>29CM</span> 취향 테스트
@@ -22,7 +22,9 @@ export default function Page() {
         </p>
       </div>
       <div className='step-button'>
-        <Button theme='white'>테스트 시작하기</Button>
+        <Button theme='white' type='link' href='/quiz'>
+          테스트 시작하기
+        </Button>
       </div>
     </main>
   );

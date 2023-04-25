@@ -1,15 +1,28 @@
 .button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 311px;
   height: 62px;
   border-radius: 32px;
   border: none;
-  background: #fff;
-  text-align: center;
-  font-family: 'Pretendard';
   font-weight: 600;
   font-size: 18px;
   color: #000;
+  background: #fff;
 }
+
+.button a {
+  text-decoration: none;
+  color: #000;
+}
+
+.button:disabled {
+  color: #fff;
+
+  background: #8c8c8c;
+}
+
 .black {
   background: #000;
   color: #fff;

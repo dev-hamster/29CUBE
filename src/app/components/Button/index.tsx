@@ -9,17 +9,14 @@ export default function Button({
   type,
   handleClick,
   href,
-  theme,
 }: {
   children: string;
   isActive?: boolean;
   type?: 'link' | 'button';
   handleClick?: () => void;
   href?: string;
-  theme?: 'black' | 'white';
 }) {
-  theme = theme || 'black';
-  const themeStyle = theme === 'black' ? style.black : '';
+  const themeStyle = style.black;
 
   return (
     <>

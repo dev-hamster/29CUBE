@@ -13,7 +13,7 @@ export default function Page() {
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       setIsLoaindg(false);
-    }, 400);
+    }, 2000);
 
     return () => {
       clearTimeout(timeoutId);

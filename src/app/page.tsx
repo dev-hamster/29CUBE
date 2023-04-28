@@ -22,7 +22,7 @@ export default function Page() {
         </p>
       </div>
       <div className='step-button'>
-        <Button theme='white' type='link' href='/quiz'>
+        <Button type='link' href='/quiz'>
           테스트 시작하기
         </Button>
       </div>

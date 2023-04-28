@@ -20,8 +20,7 @@ export default function QuizLayout() {
   const router = useRouter();
   const [step, setStep] = useState(0);
   const [keysIdx, setKeyIdx] = useState(0);
-  const { name, keys } = quizContents[step];
-
+  const { keys } = quizContents[step];
   const [nickname, setNickname] = useState('');
   const [gender, setGender] = useState('');
 
@@ -82,7 +81,7 @@ export default function QuizLayout() {
               />
             </span>
           )}
-          <p className='name'>{name}</p>
+          <p className='name'>{step + 1} STEP</p>
         </div>
       </header>
       {Contents[keys[keysIdx] as keyof typeof Contents]}
@@ -97,18 +96,14 @@ export default function QuizLayout() {
 
 const quizContents = [
   {
-    step: 1,
-    name: 'STEP 1',
     keys: ['Name', 'Age', 'Gender'],
   },
   {
-    step: 2,
-    name: 'STEP 2',
     keys: ['Keywords'],
   },
-  { name: 'STEP 3', keys: ['Place'] },
-  { name: 'STEP 4', keys: ['Color'] },
-  { name: 'STEP 5', keys: ['Texture'] },
-  { name: 'STEP 6', keys: ['Stuff'] },
-  { name: 'STEP 7', keys: ['Style'] },
+  { keys: ['Place'] },
+  { keys: ['Color'] },
+  { keys: ['Texture'] },
+  { keys: ['Stuff'] },
+  { keys: ['Style'] },
 ];

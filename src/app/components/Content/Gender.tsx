@@ -12,9 +12,9 @@ export default function Gender() {
       <Form>
         <div className='gender-container'>
           <input type='radio' id='male' name='gender' value='male' />
-          <label htmlFor='male'>남자</label>
+          <label htmlFor='male'>남성</label>
           <input type='radio' id='female' name='gender' value='female' />
-          <label htmlFor='female'>여자</label>
+          <label htmlFor='female'>여성</label>
           <input type='radio' id='unknown' name='gender' value='unknown' />
           <label htmlFor='unknown'>선택 안함</label>
         </div>

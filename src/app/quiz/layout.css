@@ -21,6 +21,10 @@
   margin: 0;
   padding-top: 12px;
   text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+  color: #d8d8d8;
 }
 
 .next-step {

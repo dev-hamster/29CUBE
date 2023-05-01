@@ -5,7 +5,7 @@
   background: gray;
 }
 
-main {
+main.result {
   background: linear-gradient(180deg, #ff6838 0%, #b3ce91 100%);
   color: #fff;
 
@@ -54,6 +54,7 @@ main {
     font-weight: 500;
     font-size: 20px;
     line-height: 21px;
+
     .box {
       display: flex;
       align-items: center;
@@ -119,6 +120,10 @@ main {
 
     .share {
       margin-bottom: 30px;
+
+      button {
+        margin: 0 auto;
+      }
     }
 
     a {

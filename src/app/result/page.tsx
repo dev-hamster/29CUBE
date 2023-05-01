@@ -21,7 +21,7 @@ export default function Page() {
   }, []);
 
   return (
-    <main>
+    <main className='result'>
       {isLoding && <Loading />}
       {!isLoding && (
         <>
@@ -65,7 +65,7 @@ export default function Page() {
           </div>
           <div className='footer'>
             <div className='share'>
-              <Button>큐브 공유하기</Button>
+              <Button isActive>큐브 공유하기</Button>
             </div>
             <Link href='/'>다시 해보기</Link>
           </div>

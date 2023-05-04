@@ -12,7 +12,7 @@ export default function Button({
 }: {
   children: string;
   isActive?: boolean;
-  type?: 'link' | 'button';
+  type?: 'link' | 'button' | 'submit';
   handleClick?: () => void;
   href?: string;
 }) {
@@ -23,6 +23,7 @@ export default function Button({
       {type !== 'link' && (
         <button
           className={`${style.button} ${themeStyle}`}
+          type={type}
           disabled={!isActive}
           onClick={() => {
             if (handleClick) handleClick();

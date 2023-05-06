@@ -1,4 +1,5 @@
 import '@/app/styles/global.css';
+import Recoil from './components/Recoil';
 
 export const metadata = {
   title: '29QUBE',
@@ -12,7 +13,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang='ko'>
-      <body>{children}</body>
+      <body>
+        <Recoil>{children}</Recoil>
+      </body>
     </html>
   );
 }

@@ -1,72 +1,141 @@
-'use client';
-
 import Image from 'next/image';
+import Button from '@/app/components/Button';
 import Form from '@/app/components/Form';
 import Quiz from '@/app/components/Quiz';
 import style from './Style.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { nickname as nicknameState, point as pointState } from '@/app/store';
+import { Item } from '@/app/utils/type';
+import { useRouter } from 'next/navigation';
+
+const tmp = {
+  selections: [
+    {
+      contents: { imgUrl: '/images/style1.png', imgId: 'img2' },
+      type: 2,
+    },
+    {
+      contents: { imgUrl: '/images/style2.png', imgId: 'img4' },
+      type: 4,
+    },
+    {
+      contents: { imgUrl: '/images/style3.png', imgId: 'img6' },
+      type: 6,
+    },
+    {
+      contents: { imgUrl: '/images/style4.png', imgId: 'img1' },
+      type: 1,
+    },
+    {
+      contents: { imgUrl: '/images/style5.png', imgId: 'img3' },
+      type: 3,
+    },
+    {
+      contents: { imgUrl: '/images/style6.png', imgId: 'img5' },
+      type: 5,
+    },
+  ],
+  point: 2,
+};
+
+const MAX_ITEM = 3;
 
 export default function Style() {
-  const MAX_ITEM = 3;
-  const [items, setItems] = useState<string[]>([]);
+  const router = useRouter();
+  const nickname = useRecoilValue(nicknameState);
+  const setPoint = useSetRecoilState(pointState);
 
-  const styles = [
-    { value: '1', url: '/images/style1.png' },
-    { value: '2', url: '/images/style2.png' },
-    { value: '3', url: '/images/style3.png' },
-    { value: '4', url: '/images/style4.png' },
-    { value: '5', url: '/images/style5.png' },
-    { value: '6', url: '/images/style6.png' },
-  ];
+  const { selections, point } = tmp;
+  const [items, setItems] = useState<Item[]>([]);
+  const [isActive, setIsActive] = useState(false);
+
+  const validate = (value: any[]) => {
+    if (value.length === MAX_ITEM) {
+      setIsActive(true);
+      return;
+    }
+    setIsActive(false);
+  };
+
+  const handleSubmit = () => {
+    items.map(({ type, point }) => {
+      setPoint((prev) => {
+        const copy = [...prev];
+        copy[type - 1] += point;
+        return copy;
+      });
+    });
+    router.push(`/result?nickname=${nickname}&result=${5}`);
+  };
+
+  useEffect(() => {
+    validate(items);
+  }, [items]);
 
   return (
     <div>
       <Quiz>
         당신이 생각하는 <br />
-        응삼이만의 스타일이 있나요?
+        {nickname}만의 스타일이 있나요?
       </Quiz>
       <Form>
         <label htmlFor=''>그 모습과 가장 가까운 무드를 골라주세요.</label>
         <div className={style.container}>
-          {styles.map(({ value, url }) => {
+          {selections.map(({ contents: { imgUrl: url }, type }) => {
+            const isChecked = !!items.find(({ type: t }) => t === type);
             let className =
-              items.length === MAX_ITEM && !items.includes(value)
-                ? style.notchecked
-                : '';
+              items.length === MAX_ITEM && !isChecked ? style.disable : '';
 
             return (
-              <div key={value} className={style.color}>
+              <div key={type} className={style.color}>
                 <input
                   type='checkbox'
-                  id={value}
-                  name='color'
-                  value={value}
-                  checked={!!items.includes(value)}
+                  id={type + ''}
+                  name='style'
+                  value={point}
+                  checked={isChecked}
+                  data-type={type}
                   onChange={(e) => {
-                    const { value, checked } = e.target;
+                    const { value: point, checked } = e.target;
+                    const type = parseInt(e.target.dataset.type as string);
+
                     if (items.length == MAX_ITEM) {
-                      if (items.includes(value)) {
-                        const copy = items.filter((x) => x !== value);
-                        setItems([...copy]);
-                      } else {
-                        const copy = items.slice(0, MAX_ITEM - 1);
-                        setItems([...copy]);
-                      }
+                      const copy = !checked
+                        ? items.filter(({ type: t }) => t !== type)
+                        : items.slice(0, MAX_ITEM - 1);
+                      setItems([...copy]);
                     }
 
                     if (checked) {
-                      setItems((prev: string[]) => [...prev, value]);
+                      setItems((prev) => [
+                        ...prev,
+                        { type, point: parseInt(point) },
+                      ]);
                     } else {
-                      setItems((prev) => prev.filter((x) => x !== value));
+                      setItems((prev) =>
+                        prev.filter(({ type: t }) => t !== type)
+                      );
                     }
                   }}
                 />
-                <label htmlFor={value} className={className}>
+                <label htmlFor={type + ''} className={className}>
                   <Image src={url} width={136} height={136} alt='' />
                 </label>
               </div>
             );
           })}
+        </div>
+        <div className='next-step'>
+          <Button
+            type='button'
+            handleClick={() => {
+              handleSubmit();
+            }}
+            isActive={isActive}
+          >
+            큐브 결과 보기
+          </Button>
         </div>
       </Form>
     </div>

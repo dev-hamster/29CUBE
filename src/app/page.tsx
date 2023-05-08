@@ -1,8 +1,18 @@
+'use client';
+
 import Image from 'next/image';
 import Button from '@/app/components/Button';
 import './page.scss';
+import usePoint from '@/app/hooks/usePoint';
+import { useEffect } from 'react';
 
 export default function Page() {
+  const { initPoint } = usePoint();
+
+  useEffect(() => {
+    initPoint();
+  }, []);
+
   return (
     <main className='container'>
       <div className='desc'>

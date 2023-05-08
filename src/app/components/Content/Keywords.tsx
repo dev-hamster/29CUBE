@@ -3,10 +3,11 @@ import Form from '@/app/components/Form';
 import Quiz from '@/app/components/Quiz';
 import style from './Keywords.module.scss';
 import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { nickname as nicknameState, point as pointState } from '@/app/store';
+import { useRecoilValue } from 'recoil';
+import { nickname as nicknameState } from '@/app/store';
 import usePageRouter from '@/app/hooks/usePageRouter';
 import { Item } from '@/app/utils/type';
+import usePoint from '@/app/hooks/usePoint';
 
 const MAX_ITEM = 3;
 const selectionItem = {
@@ -26,7 +27,7 @@ const selectionItem = {
 
 export default function Keywords() {
   const nickname = useRecoilValue(nicknameState);
-  const setPoint = useSetRecoilState(pointState);
+  const { handlePointChange } = usePoint();
 
   const { handleNext } = usePageRouter();
 
@@ -44,13 +45,7 @@ export default function Keywords() {
   };
 
   const handleSubmit = () => {
-    items.map(({ type, point }) => {
-      setPoint((prev) => {
-        const copy = [...prev];
-        copy[type - 1] += point;
-        return copy;
-      });
-    });
+    handlePointChange(items);
     handleNext();
   };
 

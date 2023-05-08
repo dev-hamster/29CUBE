@@ -4,10 +4,11 @@ import Form from '@/app/components/Form';
 import Quiz from '@/app/components/Quiz';
 import style from './Style.module.scss';
 import { useEffect, useState } from 'react';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { nickname as nicknameState, point as pointState } from '@/app/store';
+import { useRecoilValue } from 'recoil';
+import { nickname as nicknameState } from '@/app/store';
 import { Item } from '@/app/utils/type';
 import { useRouter } from 'next/navigation';
+import usePoint from '@/app/hooks/usePoint';
 
 const tmp = {
   selections: [
@@ -44,7 +45,7 @@ const MAX_ITEM = 3;
 export default function Style() {
   const router = useRouter();
   const nickname = useRecoilValue(nicknameState);
-  const setPoint = useSetRecoilState(pointState);
+  const { handlePointChange, getResultType } = usePoint();
 
   const { selections, point } = tmp;
   const [items, setItems] = useState<Item[]>([]);
@@ -59,14 +60,8 @@ export default function Style() {
   };
 
   const handleSubmit = () => {
-    items.map(({ type, point }) => {
-      setPoint((prev) => {
-        const copy = [...prev];
-        copy[type - 1] += point;
-        return copy;
-      });
-    });
-    router.push(`/result?nickname=${nickname}&result=${5}`);
+    handlePointChange(items);
+    // router.push(`/result?nickname=${nickname}&result=${getResultType()}`);
   };
 
   useEffect(() => {

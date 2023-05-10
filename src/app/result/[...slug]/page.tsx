@@ -1,3 +1,5 @@
+'use client';
+
 import { use } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -23,11 +25,19 @@ const fetchData = async ({
   return await res.json();
 };
 
+const ToastBar = ({ children }: { children: string }) => {
+  return <div className='toast'>{children}</div>;
+};
+
 export default function Page({ params }: { params: { slug: string[] } }) {
   const [nickname, type, gender] = [...params.slug];
   const data = use(fetchData({ type, gender }));
 
   const cubeImage = data.cube_image;
+
+  const handleShare = () => {
+    alert('aaas');
+  };
 
   return (
     <main className='result'>
@@ -258,10 +268,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
       </div>
       <div className='footer'>
         <div className='share'>
-          <Button isActive>큐브 공유하기</Button>
+          <Button isActive type='button' handleClick={handleShare}>
+            큐브 공유하기
+          </Button>
         </div>
         <Link href='/'>다시 해보기</Link>
+        <div className='grad'></div>
       </div>
+      <ToastBar>이미지 저장 완료</ToastBar>
     </main>
   );
 }

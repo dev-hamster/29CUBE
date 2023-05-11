@@ -5,10 +5,11 @@ import Quiz from '@/app/components/Quiz';
 import style from './Style.module.scss';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { nickname as nicknameState } from '@/app/store';
+import { gender as genderState, nickname as nicknameState } from '@/app/store';
 import { Item } from '@/app/utils/type';
 import { useRouter } from 'next/navigation';
 import usePoint from '@/app/hooks/usePoint';
+import Loading from '@/app/components/Loading';
 
 const tmp = {
   selections: [
@@ -42,9 +43,11 @@ const tmp = {
 
 const MAX_ITEM = 3;
 
+// TODO
 export default function Style() {
   const router = useRouter();
   const nickname = useRecoilValue(nicknameState);
+  const gender = useRecoilValue(genderState);
   const { handlePointChange, getResultType } = usePoint();
 
   const { selections, point } = tmp;
@@ -61,7 +64,7 @@ export default function Style() {
 
   const handleSubmit = () => {
     handlePointChange(items);
-    // router.push(`/result?nickname=${nickname}&result=${getResultType()}`);
+    router.push(`/result/${nickname}/${getResultType()}/${gender}`);
   };
 
   useEffect(() => {

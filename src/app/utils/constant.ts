@@ -1,3 +1,3 @@
-const baseURL = process.env.NEXT_API_URL as string;
+const baseURL = process.env.NEXT_PUBLIC_API_URL as string;
 
 export { baseURL };

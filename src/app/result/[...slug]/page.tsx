@@ -14,14 +14,11 @@ const fetchData = async ({
   type: string;
   gender: string;
 }) => {
-  const res = await fetch(
-    `${baseURL}/result/data?type=${type}&gender=${gender}`,
-    {
-      headers: {
-        'Cache-Control': 'max-age=31536000',
-      },
-    }
-  );
+  const res = await fetch(`${baseURL}/api/result/data?`, {
+    headers: {
+      'Cache-Control': 'max-age=31536000',
+    },
+  });
   return await res.json();
 };
 

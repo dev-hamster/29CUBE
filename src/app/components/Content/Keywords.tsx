@@ -65,7 +65,7 @@ export default function Keywords() {
           {selections.map(({ contents, type }) => (
             <div className={style.group} key={type}>
               {contents.map((text, i) => (
-                <span key={`${type}${i}`}>
+                <div className={style.wrapper} key={`${type}${i}`}>
                   <input
                     id={`${type}${i}`}
                     type='checkbox'
@@ -95,7 +95,7 @@ export default function Keywords() {
                     }}
                   />
                   <label htmlFor={`${type}${i}`}>{text}</label>
-                </span>
+                </div>
               ))}
             </div>
           ))}

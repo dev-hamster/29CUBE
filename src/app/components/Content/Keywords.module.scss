@@ -1,6 +1,6 @@
 .group {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  gap: 6px;
 }
 
 .center {
@@ -13,6 +13,10 @@
   justify-content: center;
   align-content: center;
   gap: 20px;
+}
+
+.wrapper {
+  display: flex;
 
   input[type='checkbox'] {
     appearance: none;
@@ -27,8 +31,8 @@
     box-sizing: border-box;
     width: 100%;
     height: 40px;
-    border: 2px solid #4d4d4d;
     box-sizing: border-box;
+    border: 2px solid #4d4d4d;
     color: #4d4d4d;
   }
 

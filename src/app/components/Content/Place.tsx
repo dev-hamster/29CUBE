@@ -58,7 +58,7 @@ export default function Place() {
         <label htmlFor=''>함께하고 싶은 장소를 선택해 주세요.</label>
         <div className={style.container}>
           {selections.map(({ contents, type }) => (
-            <div key={type}>
+            <div className={style.wrapper} key={type}>
               <input
                 type='radio'
                 id={type + ''}

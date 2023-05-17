@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import style from './Button.module.css';
+import { formId } from '@/app/constants';
 
 export default function Button({
   children,
@@ -22,6 +23,7 @@ export default function Button({
     <>
       {type !== 'link' && (
         <button
+          form={formId}
           className={`${style.button} ${themeStyle}`}
           type={type}
           disabled={!isActive}

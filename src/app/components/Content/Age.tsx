@@ -37,7 +37,7 @@ export default function Age() {
           <option value='1'>0</option>
           <option value='2'>1</option>
         </select> */}
-        <div className='next-step'>
+        <div className='next-step fixed'>
           <Button type='submit' handleClick={handleNext} isActive={isActive}>
             다음
           </Button>

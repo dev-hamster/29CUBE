@@ -59,7 +59,7 @@ export default function Gender() {
           />
           <label htmlFor='unknown'>선택 안함</label>
         </div>
-        <div className='next-step'>
+        <div className='next-step fixed'>
           <Button type='submit' handleClick={handleNext} isActive={isActive}>
             다음
           </Button>

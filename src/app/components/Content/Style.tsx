@@ -5,9 +5,8 @@ import Quiz from '@/app/components/Quiz';
 import style from './Style.module.scss';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { gender as genderState, nickname as nicknameState } from '@/app/store';
+import { nickname as nicknameState } from '@/app/store';
 import { Item } from '@/app/utils/type';
-import { useRouter } from 'next/navigation';
 import usePoint from '@/app/hooks/usePoint';
 import Loading from '@/app/components/Loading';
 
@@ -43,16 +42,14 @@ const tmp = {
 
 const MAX_ITEM = 3;
 
-// TODO
 export default function Style() {
-  const router = useRouter();
   const nickname = useRecoilValue(nicknameState);
-  const gender = useRecoilValue(genderState);
-  const { handlePointChange, getResultType } = usePoint();
+  const { handlePointChange } = usePoint();
 
   const { selections, point } = tmp;
   const [items, setItems] = useState<Item[]>([]);
   const [isActive, setIsActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const validate = (value: any[]) => {
     if (value.length === MAX_ITEM) {
@@ -64,12 +61,16 @@ export default function Style() {
 
   const handleSubmit = () => {
     handlePointChange(items);
-    router.push(`/result/${nickname}/${getResultType()}/${gender}`);
+    setIsLoading(true);
   };
 
   useEffect(() => {
     validate(items);
   }, [items]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
     <div>

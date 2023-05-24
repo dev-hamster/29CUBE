@@ -30,7 +30,8 @@ export default function Page({ params }: { params: { slug: string[] } }) {
   const [nickname, type, gender] = [...params.slug];
   // const data = use(fetchData({ type, gender }));
 
-  //const cubeImage = data.cube_image;
+  const CUBE_URL = `/images/result/${type}/cube.png`;
+  const BG_URL = `/images/result/${type}/bg.png`;
   const CUBE_EXTENSTION_URL = (order: number) =>
     `/images/result/${type}/${gender}/${order}.png`;
   const BRAND_URL = (order: number) =>

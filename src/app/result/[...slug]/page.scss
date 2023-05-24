@@ -1,5 +1,4 @@
 #screenshot {
-  background: #000;
 }
 
 @keyframes fadein {
@@ -48,16 +47,7 @@
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
-.tmp {
-  width: 100%;
-  margin: 20px 0;
-  height: 250px;
-  background: gray;
-}
-
 main.result {
-  // background: linear-gradient(180deg, #ff6838 0%, #b3ce91 100%);
-  background: #000;
   color: #fff;
 
   p,
@@ -83,6 +73,7 @@ main.result {
   }
 
   .title {
+    margin-bottom: 63px;
     text-align: center;
 
     p {
@@ -96,6 +87,13 @@ main.result {
       font-size: 32px;
       line-height: 38px;
     }
+  }
+
+  .cube {
+    width: 100%;
+    margin-bottom: 76px;
+    display: flex;
+    justify-content: center;
   }
 
   .en_title {

@@ -1,18 +1,23 @@
 .container {
   display: grid;
-  gap: 6px;
-  width: 100%;
+  gap: 12px;
+}
+
+.wrapper {
+  display: flex;
 
   label {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 51px;
+    width: 307px;
+    height: 62px;
     box-sizing: border-box;
     border: 2px solid #4d4d4d;
     color: #4d4d4d;
     font-weight: 600;
+    font-size: 14px;
   }
 
   input[type='radio'] {

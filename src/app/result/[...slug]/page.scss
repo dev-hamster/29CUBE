@@ -1,0 +1,282 @@
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translate(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  width: 359px;
+  height: 62px;
+  border-radius: 6px;
+  border: none;
+  font-weight: 600;
+  font-size: 18px;
+  color: #000;
+  background: #fff;
+
+  display: none;
+}
+
+.tmp {
+  width: 100%;
+  margin: 20px 0;
+  height: 250px;
+  background: gray;
+}
+
+main.result {
+  // background: linear-gradient(180deg, #ff6838 0%, #b3ce91 100%);
+  background: #000;
+  color: #fff;
+
+  p,
+  h1 {
+    padding: 0;
+    margin: 0;
+  }
+
+  .save {
+    display: flex;
+    justify-content: end;
+    padding: 0 14px;
+    padding-top: 70px;
+
+    .btn {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      appearance: none;
+      background: transparent;
+      border: none;
+    }
+  }
+
+  .title {
+    text-align: center;
+
+    p {
+      margin-bottom: 5px;
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 24px;
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 38px;
+    }
+  }
+
+  .en_title {
+    padding: 0 14px;
+    margin-bottom: 14px;
+    height: 57px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 21px;
+
+    .box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  .desc {
+    padding: 0 14px;
+    margin-bottom: 30px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 23px;
+
+    .box {
+      padding: 18px 18px 30px 18px;
+    }
+  }
+
+  .figure-container {
+    padding: 0 16px;
+    margin-bottom: 30px;
+
+    > p {
+      position: relative;
+      margin-bottom: 14px;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 21px;
+
+      &:hover::after {
+        content: '전개도를 눌러 상세페이지로 이동해 보세요.';
+        position: absolute;
+        top: 29px;
+        left: 7px;
+        padding: 13px 12px 11px;
+        border-radius: 5px;
+        background: #000000;
+        border: 1.5px solid #ffffff;
+        font-weight: 600;
+        font-size: 12px;
+        line-height: 14px;
+      }
+    }
+
+    .box {
+      padding: 50px 0;
+    }
+
+    .figure {
+      .block {
+        display: flex;
+        justify-content: center;
+
+        > div {
+          width: 105px;
+          height: 105px;
+          box-sizing: border-box;
+        }
+
+        .text {
+          padding: 20px 10px 0 10px;
+
+          .brand {
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 14px;
+            letter-spacing: -0.022em;
+            text-decoration-line: underline;
+            color: #ffffff;
+          }
+          .product {
+            font-weight: 500;
+            font-size: 10px;
+            line-height: 12px;
+            letter-spacing: -0.03em;
+            color: #d8d8d8;
+            opacity: 0.5;
+          }
+        }
+
+        .image {
+          position: relative;
+          background: white;
+          .idx {
+            position: absolute;
+            top: 4px;
+            left: 4px;
+            z-index: 1;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 14px;
+            color: #4d4d4d;
+          }
+
+          &.border-top:after {
+            content: '';
+            position: absolute;
+            width: 95px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            border: 0.75px dashed #8c8c8c;
+          }
+
+          &.border-left:after {
+            content: '';
+            position: absolute;
+            width: 95px;
+            left: 0;
+            top: 50%;
+            transform: translate(-50%, 0) rotate(90deg);
+            border: 0.75px dashed #8c8c8c;
+          }
+        }
+
+        .left {
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  .brand-block {
+    padding: 0 16px;
+    margin-bottom: 60px;
+    padding: 0 16px;
+
+    p {
+      margin-bottom: 14px;
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 21px;
+    }
+
+    .desc {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 23px;
+    }
+
+    .brands {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 14px;
+
+      .brand {
+        position: relative;
+        width: 97px;
+        height: 99px;
+      }
+      .brand:nth-child(2) {
+        margin: 0 12px;
+      }
+    }
+  }
+
+  .footer {
+    position: relative;
+    padding-bottom: 50px;
+    text-align: center;
+
+    .share {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 30px;
+
+      button {
+        margin: 0 auto;
+      }
+    }
+
+    a {
+      position: relative;
+      z-index: 1;
+      text-decoration: none;
+      color: #fff;
+    }
+
+    .grad {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 149px;
+      background: linear-gradient(
+        180deg,
+        rgba(0, 0, 0, 0) 26.85%,
+        #000000 141.95%
+      );
+      background-blend-mode: multiply;
+    }
+  }
+}
+
+.box {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+}

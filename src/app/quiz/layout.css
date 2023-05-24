@@ -28,17 +28,15 @@
 }
 
 .next-step {
-  /* display: flex;
-  justify-content: center;
-  position: fixed;
-  width: 100%;
-  bottom: 29px;
-  box-sizing: border-box; */
+  margin: 43px 0 40px;
+}
+
+.next-step.fixed {
   display: flex;
   justify-content: center;
   position: fixed;
   margin: 0 auto;
   left: 0;
   right: 0;
-  bottom: 24px;
+  bottom: 40px;
 }

@@ -1,11 +1,58 @@
 'use client';
 
-import { use } from 'react';
+import React, { ReactNode, use, useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import html2canvas from 'html2canvas';
 import Button from '@/app/components/Button';
 import './page.scss';
 import { baseURL } from '@/app/utils/constant';
+
+// TODO 토스트 메세지 이상함
+// TODO 캡쳐 영역 이상함 아 제발 ㅈ같애
+// TODO 다시하기 전역 상태 초기화
+// TODO api 연동
+
+const screenshotId = 'screenshot';
+
+const onSaveAs = ({
+  uri,
+  filename,
+  handleAfterSave,
+}: {
+  uri: string;
+  filename: string;
+  handleAfterSave?: () => void;
+}) => {
+  let link = document.createElement('a');
+  document.body.appendChild(link);
+  link.href = uri;
+  link.download = filename;
+  link.click();
+  document.body.removeChild(link);
+
+  if (handleAfterSave) {
+    handleAfterSave();
+  }
+};
+
+const onCapture = ({
+  filename,
+  handleAfterSave,
+}: {
+  filename: string;
+  handleAfterSave: () => void;
+}) => {
+  html2canvas(document.getElementById(screenshotId) as HTMLElement).then(
+    (canvas) => {
+      onSaveAs({
+        uri: canvas.toDataURL('image/png'),
+        filename,
+        handleAfterSave,
+      });
+    }
+  );
+};
 
 const fetchData = async ({
   type,
@@ -22,13 +69,19 @@ const fetchData = async ({
   return await res.json();
 };
 
-const ToastBar = ({ children }: { children: string }) => {
-  return <div className='toast'>{children}</div>;
-};
+const ToastBar = ({
+  show = false,
+  children,
+}: {
+  show: boolean;
+  children: ReactNode;
+}) => <div className={`toast ${show ? 'show' : ''}`}>{children}</div>;
 
 export default function Page({ params }: { params: { slug: string[] } }) {
   const [nickname, type, gender] = [...params.slug];
   // const data = use(fetchData({ type, gender }));
+  const [isCopied, setisCopied] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   const CUBE_URL = `/images/result/${type}/cube.png`;
   const BG_URL = `/images/result/${type}/bg.png`;
@@ -38,45 +91,159 @@ export default function Page({ params }: { params: { slug: string[] } }) {
     `/images/result/${type}/${gender}/brand${order}.png`;
 
   const handleShare = () => {
-    alert('aaas');
+    window.navigator.clipboard
+      .writeText(location.href)
+      .then(() => setisCopied((prev) => !prev));
   };
+
+  const handleSave = () => {
+    if (isCopied) return;
+
+    onCapture({
+      filename: `${data.survey_result_user_type_en} ${nickname}`,
+      handleAfterSave: () => setIsSaved(true),
+    });
+  };
+
+  console.log('render', isCopied);
+
+  useEffect(() => {
+    if (!isCopied) return;
+
+    const timer = setTimeout(() => {
+      setisCopied((prev) => !prev);
+      console.log('after timre', isCopied);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timer);
+      setisCopied(false);
+      console.log('clean up', isCopied);
+    };
+  }, [isCopied]);
+
+  useEffect(() => {
+    if (!isSaved) return;
+
+    const timer = setTimeout(() => {
+      setIsSaved(false);
+    }, 3200);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isSaved]);
 
   return (
     <main className='result'>
-      <div className='save'>
-        <button className='btn'>
-          <Image src='/images/save.svg' fill alt='' />
-        </button>
-      </div>
-      <div className='title'>
-        <p>{nickname}님의 큐브는</p>
-        <h1>{data.survey_result_user_type_kr}</h1>
-      </div>
-      <div className='tmp'>임시영역</div>
-      <div className='en_title'>
-        <div className='box'>{data.survey_result_user_type_en}</div>
-      </div>
-      <div className='desc'>
-        <div className='box'>{data.survey_result_user_type_description}</div>
-      </div>
-      <div className='figure-container'>
-        <p>큐브 전개도</p>
-        <div className='box'>
-          <div className='figure'>
-            <div className='block'>
-              <div className='text left'>
-                <a
-                  href={data.cube_expansion[0].cube_expansion_image_address}
-                  target='_blank'
-                  rel='noreferrer noopener'
-                >
-                  <p className='brand'>
-                    {data.cube_expansion[0].cube_expansion_image_name}
-                  </p>
+      <div id={screenshotId}>
+        <div className='save'>
+          <button className='btn' onClick={handleSave}>
+            <Image src='/images/save.svg' fill alt='' />
+          </button>
+        </div>
+        <div className='title'>
+          <p>{nickname}님의 큐브는</p>
+          <h1>{data.survey_result_user_type_kr}</h1>
+        </div>
+        <div className='tmp'>임시영역</div>
+        <div className='en_title'>
+          <div className='box'>{data.survey_result_user_type_en}</div>
+        </div>
+        <div className='desc'>
+          <div className='box'>{data.survey_result_user_type_description}</div>
+        </div>
+        <div className='figure-container'>
+          <p>큐브 전개도</p>
+          <div className='box'>
+            <div className='figure'>
+              <div className='block'>
+                <div className='text left'>
+                  <a
+                    href={data.cube_expansion[0].cube_expansion_image_address}
+                    target='_blank'
+                    rel='noreferrer noopener'
+                  >
+                    <p className='brand'>
+                      {data.cube_expansion[0].cube_expansion_image_name}
+                    </p>
+                    <p className='product'>
+                      {data.cube_expansion[0].cube_expansion_image_description}
+                    </p>
+                  </a>
+                </div>
+                <div className='image'>
+                  <a
+                    href={data.cube_expansion[0].cube_expansion_image_address}
+                    target='_blank'
+                    rel='noreferrer noopener'
+                  >
+                    <span className='idx'>01</span>
+                    <Image
+                      src={`/images/result/type${type}/${gender}/cube_expansion_image1.jpg`}
+                      fill
+                      alt=''
+                    />
+                  </a>
+                </div>
+                <div className='text right'>
+                  <a
+                    href={data.cube_expansion[1].cube_expansion_image_address}
+                    target='_blank'
+                    rel='noreferrer noopener'
+                  >
+                    <p className='brand'>
+                      {data.cube_expansion[1].cube_expansion_image_name}
+                    </p>
+                    <p className='product'>
+                      {data.cube_expansion[1].cube_expansion_image_description}
+                    </p>
+                  </a>
+                </div>
+              </div>
+              <div className='block'>
+                <div className='text left'>
+                  <a
+                    href={data.cube_expansion[2].cube_expansion_image_address}
+                    target='_blank'
+                    rel='noreferrer noopener'
+                  >
+                    <p className='brand'>
+                      {data.cube_expansion[2].cube_expansion_image_name}
+                    </p>
+                  </a>
                   <p className='product'>
-                    {data.cube_expansion[0].cube_expansion_image_description}
+                    {data.cube_expansion[2].cube_expansion_image_description}
                   </p>
-                </a>
+                </div>
+                <div className='image border-top'>
+                  <a
+                    href={data.cube_expansion[1].cube_expansion_image_address}
+                    target='_blank'
+                    rel='noreferrer noopener'
+                  >
+                    <span className='idx'>02</span>
+                    <Image
+                      src={`/images/result/type${type}/${gender}/cube_expansion_image2.jpg`}
+                      fill
+                      alt=''
+                    />
+                  </a>
+                </div>
+                <div className='image right border-left'>
+                  <a
+                    href={data.cube_expansion[2].cube_expansion_image_address}
+                    target='_blank'
+                    rel='noreferrer noopener'
+                  >
+                    <span className='idx'>03</span>
+                    <Image
+                      src={`/images/result/type${type}/${gender}/cube_expansion_image3.jpg`}
+                      fill
+                      alt=''
+                    />
+                  </a>
+                </div>
               </div>
               <div className='image'>
                 <a
@@ -242,7 +409,6 @@ export default function Page({ params }: { params: { slug: string[] } }) {
             )
           )}
         </div>
-        <p className='desc'>{data.related_brand.related_brand_description}</p>
       </div>
       <div className='footer'>
         <div className='share'>
@@ -253,7 +419,13 @@ export default function Page({ params }: { params: { slug: string[] } }) {
         <Link href='/'>다시 해보기</Link>
         <div className='grad'></div>
       </div>
-      <ToastBar>이미지 저장 완료</ToastBar>
+      <ToastBar show={isCopied}>링크를 저장했습니다.</ToastBar>
+      <ToastBar show={isSaved}>
+        <span>
+          <Image width={18} height={18} alt='' src='/images/check-black.svg' />
+        </span>
+        이미지 저장 완료
+      </ToastBar>
     </main>
   );
 }

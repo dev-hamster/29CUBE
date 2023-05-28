@@ -1,6 +1,6 @@
 'use client';
 import { atom } from 'recoil';
-import { Item } from '@/app/utils/type';
+import { Item, Step } from '@/app/utils/type';
 
 const step = atom({
   key: 'step',
@@ -27,4 +27,9 @@ const pointHistory = atom<Item[][]>({
   default: [],
 });
 
-export { step, keysIdx, nickname, gender, pointHistory };
+const steps = atom<Record<string, Step>>({
+  key: 'steps',
+  default: {},
+});
+
+export { step, keysIdx, nickname, gender, pointHistory, steps };

@@ -3,4 +3,9 @@ interface Item {
   point: number;
 }
 
-export type { Item };
+interface Step {
+  point: number;
+  selections: any[];
+}
+
+export type { Item, Step };

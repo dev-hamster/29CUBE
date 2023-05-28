@@ -6,7 +6,7 @@ import Link from 'next/link';
 import html2canvas from 'html2canvas';
 import Button from '@/app/components/Button';
 import './page.scss';
-import { baseURL } from '@/app/utils/constant';
+import { fetchResult } from '@/api';
 
 // TODO 토스트 메세지 이상함
 // TODO 캡쳐 영역 이상함 아 제발
@@ -54,21 +54,6 @@ const onCapture = ({
   );
 };
 
-const fetchData = async ({
-  type,
-  gender,
-}: {
-  type: string;
-  gender: string;
-}) => {
-  const res = await fetch(`${baseURL}/api/result/data?`, {
-    headers: {
-      'Cache-Control': 'max-age=31536000',
-    },
-  });
-  return await res.json();
-};
-
 const ToastBar = ({
   show = false,
   children,
@@ -83,7 +68,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
     params.slug[1],
     params.slug[2],
   ];
-  // const data = use(fetchData({ type, gender }));
+  const data = use(fetchResult({ type, gender }));
   const [isCopied, setisCopied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
 

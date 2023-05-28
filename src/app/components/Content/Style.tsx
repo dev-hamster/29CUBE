@@ -5,48 +5,21 @@ import Quiz from '@/app/components/Quiz';
 import style from './Style.module.scss';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
-import { nickname as nicknameState } from '@/app/store';
+import { nickname as nicknameState, gender as genderState } from '@/app/store';
 import { Item } from '@/app/utils/type';
 import usePoint from '@/app/hooks/usePoint';
 import Loading from '@/app/components/Loading';
-
-const tmp = {
-  selections: [
-    {
-      contents: { imgUrl: '/images/style1.png', imgId: 'img2' },
-      type: 2,
-    },
-    {
-      contents: { imgUrl: '/images/style2.png', imgId: 'img4' },
-      type: 4,
-    },
-    {
-      contents: { imgUrl: '/images/style3.png', imgId: 'img6' },
-      type: 6,
-    },
-    {
-      contents: { imgUrl: '/images/style4.png', imgId: 'img1' },
-      type: 1,
-    },
-    {
-      contents: { imgUrl: '/images/style5.png', imgId: 'img3' },
-      type: 3,
-    },
-    {
-      contents: { imgUrl: '/images/style6.png', imgId: 'img5' },
-      type: 5,
-    },
-  ],
-  point: 2,
-};
+import useStepData from '@/app/hooks/useStepData';
 
 const MAX_ITEM = 3;
 
 export default function Style() {
   const nickname = useRecoilValue(nicknameState);
+  const gender = useRecoilValue(genderState);
+  const { getStepData } = useStepData();
   const { handlePointChange } = usePoint();
 
-  const { selections, point } = tmp;
+  const { selections, point } = getStepData(7);
   const [items, setItems] = useState<Item[]>([]);
   const [isActive, setIsActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -119,7 +92,12 @@ export default function Style() {
                   }}
                 />
                 <label htmlFor={type + ''} className={className}>
-                  <Image src={url} width={136} height={136} alt='' />
+                  <Image
+                    src={`/images/${gender}-style${type}.png`}
+                    width={136}
+                    height={136}
+                    alt=''
+                  />
                 </label>
               </div>
             );

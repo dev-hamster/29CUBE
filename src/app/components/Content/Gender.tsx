@@ -55,7 +55,15 @@ export default function Gender() {
             id='unknown'
             name='gender'
             value='unknown'
-            onChange={(e) => handleChange(e.target.value)}
+            onChange={() => {
+              let gender = '';
+              if (Math.random() > 0.5) {
+                gender = 'female';
+              } else {
+                gender = 'male';
+              }
+              handleChange(gender);
+            }}
           />
           <label htmlFor='unknown'>선택 안함</label>
         </div>

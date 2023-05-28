@@ -8,24 +8,16 @@ import { nickname as nicknameState } from '@/app/store';
 import usePageRouter from '@/app/hooks/usePageRouter';
 import { Item } from '@/app/utils/type';
 import usePoint from '@/app/hooks/usePoint';
+import useStepData from '@/app/hooks/useStepData';
 
 const MAX_ITEM = 3;
-const selectionItem = {
-  selections: [
-    { contents: ['예술적인', '자유로운', '유니크한'], type: 4 },
-    { contents: ['여유로운', '편안한', '느긋한'], type: 3 },
-    { contents: ['에너제틱', '열정적인', '유쾌한'], type: 1 },
-    { contents: ['이성적인', '실용적인', '스마트한'], type: 2 },
-    { contents: ['감성적인', '담백한', '우아한'], type: 5 },
-    { contents: ['주목받는', '사교적인', '럭셔리한'], type: 6 },
-  ],
-  point: 1,
-};
 
 // TODO 아이템 간격 css
 // TODO 세개 이상 선택시 버퍼 과리
 
 export default function Keywords() {
+  const { getStepData } = useStepData();
+  const { point, selections } = getStepData(2);
   const nickname = useRecoilValue(nicknameState);
   const { handlePointChange } = usePoint();
 
@@ -33,8 +25,6 @@ export default function Keywords() {
 
   const [items, setItems] = useState<Item[]>([]);
   const [isActive, setIsActive] = useState(false);
-
-  const { selections, point } = selectionItem;
 
   const validate = (value: any[]) => {
     if (value.length === MAX_ITEM) {
@@ -64,7 +54,7 @@ export default function Keywords() {
         <div className={style.container}>
           {selections.map(({ contents, type }) => (
             <div className={style.group} key={type}>
-              {contents.map((text, i) => (
+              {contents.map((text: string, i: number) => (
                 <div className={style.wrapper} key={`${type}${i}`}>
                   <input
                     id={`${type}${i}`}

@@ -9,40 +9,12 @@ import { nickname as nicknameState } from '@/app/store';
 import usePageRouter from '@/app/hooks/usePageRouter';
 import usePoint from '@/app/hooks/usePoint';
 import { Item } from '@/app/utils/type';
-
-const colors = {
-  selections: [
-    {
-      contents: { imgUrl: '/images/step4/img2.jpg', imgId: 'img2' },
-      type: 2,
-    },
-    {
-      contents: { imgUrl: '/images/step4/img4.jpg', imgId: 'img4' },
-      type: 4,
-    },
-    {
-      contents: { imgUrl: '/images/step4/img6.jpg', imgId: 'img6' },
-      type: 6,
-    },
-    {
-      contents: { imgUrl: '/images/step4/img1.jpg', imgId: 'img1' },
-      type: 1,
-    },
-    {
-      contents: { imgUrl: '/images/step4/img3.jpg', imgId: 'img3' },
-      type: 3,
-    },
-    {
-      contents: { imgUrl: '/images/step4/img5.jpg', imgId: 'img5' },
-      type: 5,
-    },
-  ],
-  point: 2,
-};
+import useSteps from '@/app/hooks/useStepData';
 
 export default function Color() {
   const nickname = useRecoilValue(nicknameState);
-  const { selections, point } = colors;
+  const { getStepData } = useSteps();
+  const { selections, point } = getStepData(4);
 
   const { handleNext } = usePageRouter();
   const { handlePointChange } = usePoint();
@@ -100,7 +72,12 @@ export default function Color() {
                   }}
                 />
                 <label htmlFor={type + ''} className={className}>
-                  <Image src={url} width={136} height={136} alt='' />
+                  <Image
+                    src={`/images/color${type}.png`}
+                    width={136}
+                    height={136}
+                    alt=''
+                  />
                 </label>
               </div>
             );

@@ -9,6 +9,7 @@ import { nickname as nicknameState } from '@/app/store';
 import usePageRouter from '@/app/hooks/usePageRouter';
 import usePoint from '@/app/hooks/usePoint';
 import { Item } from '@/app/utils/type';
+import useStepData from '@/app/hooks/useStepData';
 
 const colors = {
   selections: [
@@ -51,7 +52,8 @@ const textures = [
 
 export default function Texture() {
   const nickname = useRecoilValue(nicknameState);
-  const { selections, point } = colors;
+  const { getStepData } = useStepData();
+  const { selections, point } = getStepData(5);
 
   const { handleNext } = usePageRouter();
   const { handlePointChange } = usePoint();
@@ -138,7 +140,12 @@ export default function Texture() {
                   }}
                 />
                 <label htmlFor={type + ''} className={className}>
-                  <Image src={url} width={136} height={136} alt='' />
+                  <Image
+                    src={`/images/texture${type}.png`}
+                    width={136}
+                    height={136}
+                    alt=''
+                  />
                 </label>
               </div>
             );

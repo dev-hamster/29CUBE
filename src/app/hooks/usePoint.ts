@@ -30,18 +30,16 @@ export default function usePoint() {
     let type = 0;
     let maxPoint = 0;
 
-    const point_ = [0, 0, 0, 0, 0, 0];
-    history.map((items) =>
-      items.map(({ type, point }) => (point_[type] += point))
-    );
+    history.forEach((arr) => {
+      arr.forEach((item) => {
+        if (item.point > maxPoint) {
+          maxPoint = item.point;
+          type = item.type;
+        }
+      });
+    });
 
-    for (let i = 0; i < point_.length; i += 1) {
-      if (maxPoint > point_[i]) {
-        type = i;
-      }
-    }
-
-    return type + 1;
+    return type;
   };
 
   return {

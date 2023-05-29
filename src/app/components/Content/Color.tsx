@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Button from '@/app/components/Button';
 import Form from '@/app/components/Form';
-import Quiz from '@/app/components/Quiz';
+import Quiz, { QuizLayout } from '@/app/components/Quiz';
 import style from './Color.module.scss';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -16,7 +16,7 @@ export default function Color() {
   const { getStepData } = useSteps();
   const { selections, point } = getStepData(4);
 
-  const { handleNext } = usePageRouter();
+  const { handleNext, step } = usePageRouter();
   const { handlePointChange } = usePoint();
 
   const [item, setItem] = useState<Item>();
@@ -40,7 +40,7 @@ export default function Color() {
   }, [item]);
 
   return (
-    <div>
+    <QuizLayout isActive={step === 3}>
       <Quiz>
         {nickname}님 하면 이런 컬러, <br /> 이 중에 있나요?
       </Quiz>
@@ -61,17 +61,18 @@ export default function Color() {
               <div key={type} className={style.color}>
                 <input
                   type='radio'
-                  id={type + ''}
+                  id={'color' + type}
                   name='color'
                   value={point}
                   data-type={type}
                   onChange={(e) => {
+                    console.log('hi');
                     const { value: point } = e.target;
                     const type = parseInt(e.target.dataset.type as string);
                     setItem({ type, point: parseInt(point) });
                   }}
                 />
-                <label htmlFor={type + ''} className={className}>
+                <label htmlFor={'color' + type} className={className}>
                   <Image
                     src={`/images/color${type}.png`}
                     width={136}
@@ -95,6 +96,6 @@ export default function Color() {
           </Button>
         </div>
       </Form>
-    </div>
+    </QuizLayout>
   );
 }

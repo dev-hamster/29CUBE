@@ -45,7 +45,7 @@ const usePageRouter = () => {
     setKeysIdx(0);
   };
 
-  return { handleNext, handleBack, initRouter };
+  return { handleNext, handleBack, initRouter, step, keysIdx };
 };
 
 export default usePageRouter;

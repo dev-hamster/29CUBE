@@ -7,3 +7,19 @@ export default function Quiz({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
+
+function QuizLayout({
+  children,
+  isActive = false,
+}: {
+  children: React.ReactNode;
+  isActive?: boolean;
+}) {
+  return (
+    <div className={`${style.layout} ${isActive && style.show}`}>
+      {children}
+    </div>
+  );
+}
+
+export { QuizLayout };

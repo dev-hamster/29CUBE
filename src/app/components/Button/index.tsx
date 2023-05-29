@@ -27,7 +27,8 @@ export default function Button({
           className={`${style.button} ${themeStyle}`}
           type={type}
           disabled={!isActive}
-          onClick={() => {
+          onClick={(e) => {
+            e.preventDefault();
             if (handleClick) handleClick();
           }}
         >

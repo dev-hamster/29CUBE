@@ -1,4 +1,4 @@
-import Quiz from '@/app/components/Quiz';
+import Quiz, { QuizLayout } from '@/app/components/Quiz';
 import Form from '@/app/components/Form';
 import { useSetRecoilState } from 'recoil';
 import { gender } from '@/app/store';
@@ -11,7 +11,7 @@ import { nickname as nicknameState } from '@/app/store';
 export default function Gender() {
   const nickname = useRecoilValue(nicknameState);
   const setGender = useSetRecoilState(gender);
-  const { handleNext } = usePageRouter();
+  const { handleNext, step, keysIdx } = usePageRouter();
   const [isActive, setIsActive] = useState(false);
 
   const handleChange = (value: string) => {
@@ -28,7 +28,7 @@ export default function Gender() {
   };
 
   return (
-    <div>
+    <QuizLayout isActive={step === 0 && keysIdx === 2}>
       <Quiz>
         {nickname}님의 <br /> 성별을 알려주세요.
       </Quiz>
@@ -73,6 +73,6 @@ export default function Gender() {
           </Button>
         </div>
       </Form>
-    </div>
+    </QuizLayout>
   );
 }

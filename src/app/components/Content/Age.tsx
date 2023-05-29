@@ -1,4 +1,4 @@
-import Quiz from '@/app/components/Quiz';
+import Quiz, { QuizLayout } from '@/app/components/Quiz';
 import Form from '@/app/components/Form';
 import usePageRouter from '@/app/hooks/usePageRouter';
 import Button from '@/app/components/Button';
@@ -8,7 +8,7 @@ import { nickname as nicknameState } from '@/app/store';
 
 export default function Age() {
   const nickname = useRecoilValue(nicknameState);
-  const { handleNext } = usePageRouter();
+  const { handleNext, step, keysIdx } = usePageRouter();
   const [isActive, setIsActive] = useState(false);
 
   const validate = (value: number) => {
@@ -20,7 +20,7 @@ export default function Age() {
   };
 
   return (
-    <div>
+    <QuizLayout isActive={step === 0 && keysIdx === 1}>
       <Quiz>
         {nickname}님은 <br /> 몇 세인가요?
       </Quiz>
@@ -43,6 +43,6 @@ export default function Age() {
           </Button>
         </div>
       </Form>
-    </div>
+    </QuizLayout>
   );
 }

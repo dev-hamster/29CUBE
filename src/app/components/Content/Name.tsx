@@ -5,12 +5,13 @@ import usePageRouter from '@/app/hooks/usePageRouter';
 import { useSetRecoilState } from 'recoil';
 import { nickname } from '@/app/store';
 import { useState } from 'react';
+import { QuizLayout } from '@/app/components/Quiz';
 
 const MAX = 20;
 
 export default function Name() {
   const setNickname = useSetRecoilState(nickname);
-  const { handleNext } = usePageRouter();
+  const { handleNext, step, keysIdx } = usePageRouter();
   const [isActive, setIsActive] = useState(false);
 
   const validate = (value: string) => {
@@ -22,7 +23,7 @@ export default function Name() {
   };
 
   return (
-    <div>
+    <QuizLayout isActive={step === 0 && keysIdx === 0}>
       <Quiz>
         그럼 시작해볼게요. <br /> 상대방을 뭐라고 부르며 좋을까요?
       </Quiz>
@@ -45,6 +46,6 @@ export default function Name() {
           </Button>
         </div>
       </Form>
-    </div>
+    </QuizLayout>
   );
 }

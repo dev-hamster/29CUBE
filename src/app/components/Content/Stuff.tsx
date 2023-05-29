@@ -1,6 +1,6 @@
 import Button from '@/app/components/Button';
 import Form from '@/app/components/Form';
-import Quiz from '@/app/components/Quiz';
+import Quiz, { QuizLayout } from '@/app/components/Quiz';
 import style from './Place.module.scss';
 import { useRecoilValue } from 'recoil';
 import { nickname as nicknameState } from '@/app/store';
@@ -15,7 +15,7 @@ export default function Stuff() {
   const { getStepData } = useStepData();
   const { selections, point } = getStepData(6);
 
-  const { handleNext } = usePageRouter();
+  const { handleNext, step } = usePageRouter();
   const { handlePointChange } = usePoint();
 
   const [item, setItem] = useState<Item>();
@@ -39,7 +39,7 @@ export default function Stuff() {
   }, [item]);
 
   return (
-    <div>
+    <QuizLayout isActive={step === 5}>
       <Quiz>
         {nickname}을 대표할 수 있는 물건, <br />
         어떤 게 있을까요?
@@ -51,7 +51,7 @@ export default function Stuff() {
             <div className={style.wrapper} key={type}>
               <input
                 type='radio'
-                id={type + ''}
+                id={'stuff' + type}
                 name='stuff'
                 value={point}
                 data-type={type}
@@ -61,7 +61,7 @@ export default function Stuff() {
                   setItem({ type, point });
                 }}
               />
-              <label htmlFor={type + ''}>{contents}</label>
+              <label htmlFor={'stuff' + type}>{contents}</label>
             </div>
           ))}
         </div>
@@ -77,6 +77,6 @@ export default function Stuff() {
           다음
         </Button>
       </div>
-    </div>
+    </QuizLayout>
   );
 }

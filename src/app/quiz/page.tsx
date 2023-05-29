@@ -1,12 +1,7 @@
 'use client';
 
 import { useRecoilValue } from 'recoil';
-import {
-  step as stepState,
-  keysIdx as keysIdxState,
-  nickname as nicknameState,
-  gender as genderState,
-} from '@/app/store';
+import { step as stepState, keysIdx as keysIdxState } from '@/app/store';
 import Image from 'next/image';
 import Process from '@/app/components/Process';
 import Age from '@/app/components/Content/Age';
@@ -19,27 +14,13 @@ import Stuff from '@/app/components/Content/Stuff';
 import Style from '@/app/components/Content/Style';
 import Texture from '@/app/components/Content/Texture';
 import './layout.css';
-import quizContents from '@/app/utils/quizContents';
 import usePageRouter from '@/app/hooks/usePageRouter';
 
 export default function QuizLayout() {
   const step = useRecoilValue(stepState);
   const keysIdx = useRecoilValue(keysIdxState);
 
-  const { keys } = quizContents[step];
   const { handleBack } = usePageRouter();
-
-  const Contents = {
-    Name: <Name />,
-    Age: <Age />,
-    Gender: <Gender />,
-    Keywords: <Keywords />,
-    Place: <Place />,
-    Color: <Color />,
-    Texture: <Texture />,
-    Stuff: <Stuff />,
-    Style: <Style />,
-  };
 
   return (
     <main>
@@ -62,7 +43,15 @@ export default function QuizLayout() {
           <p className='name'>{step + 1} STEP</p>
         </div>
       </header>
-      {Contents[keys[keysIdx] as keyof typeof Contents]}
+      <Name />
+      <Age />
+      <Gender />
+      <Keywords />
+      <Place />
+      <Color />
+      <Texture />
+      <Stuff />
+      <Style />
     </main>
   );
 }

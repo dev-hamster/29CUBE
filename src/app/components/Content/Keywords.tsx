@@ -1,6 +1,6 @@
 import Button from '@/app/components/Button';
 import Form from '@/app/components/Form';
-import Quiz from '@/app/components/Quiz';
+import Quiz, { QuizLayout } from '@/app/components/Quiz';
 import style from './Keywords.module.scss';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -12,7 +12,6 @@ import useStepData from '@/app/hooks/useStepData';
 
 const MAX_ITEM = 3;
 
-// TODO 아이템 간격 css
 // TODO 세개 이상 선택시 버퍼 과리
 
 export default function Keywords() {
@@ -21,7 +20,7 @@ export default function Keywords() {
   const nickname = useRecoilValue(nicknameState);
   const { handlePointChange } = usePoint();
 
-  const { handleNext } = usePageRouter();
+  const { handleNext, step } = usePageRouter();
 
   const [items, setItems] = useState<Item[]>([]);
   const [isActive, setIsActive] = useState(false);
@@ -44,7 +43,7 @@ export default function Keywords() {
   }, [items]);
 
   return (
-    <div>
+    <QuizLayout isActive={step === 1}>
       <Quiz>
         {nickname}님은 <br />
         어떤 사람이에요?
@@ -102,6 +101,6 @@ export default function Keywords() {
           </Button>
         </div>
       </Form>
-    </div>
+    </QuizLayout>
   );
 }

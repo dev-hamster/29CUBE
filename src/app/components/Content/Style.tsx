@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Button from '@/app/components/Button';
 import Form from '@/app/components/Form';
-import Quiz from '@/app/components/Quiz';
+import Quiz, { QuizLayout } from '@/app/components/Quiz';
 import style from './Style.module.scss';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -10,6 +10,7 @@ import { Item } from '@/app/utils/type';
 import usePoint from '@/app/hooks/usePoint';
 import Loading from '@/app/components/Loading';
 import useStepData from '@/app/hooks/useStepData';
+import usePageRouter from '@/app/hooks/usePageRouter';
 
 const MAX_ITEM = 3;
 
@@ -18,6 +19,7 @@ export default function Style() {
   const gender = useRecoilValue(genderState);
   const { getStepData } = useStepData();
   const { handlePointChange } = usePoint();
+  const { step } = usePageRouter();
 
   const { selections, point } = getStepData(7);
   const [items, setItems] = useState<Item[]>([]);
@@ -46,7 +48,7 @@ export default function Style() {
   }
 
   return (
-    <div>
+    <QuizLayout isActive={step === 6}>
       <Quiz>
         당신이 생각하는 <br />
         {nickname}만의 스타일이 있나요?
@@ -63,7 +65,7 @@ export default function Style() {
               <div key={type} className={style.color}>
                 <input
                   type='checkbox'
-                  id={type + ''}
+                  id={'style' + type}
                   name='style'
                   value={point}
                   checked={isChecked}
@@ -91,7 +93,7 @@ export default function Style() {
                     }
                   }}
                 />
-                <label htmlFor={type + ''} className={className}>
+                <label htmlFor={'style' + type} className={className}>
                   <Image
                     src={`/images/${gender}-style${type}.png`}
                     width={136}
@@ -115,6 +117,6 @@ export default function Style() {
           </Button>
         </div>
       </Form>
-    </div>
+    </QuizLayout>
   );
 }

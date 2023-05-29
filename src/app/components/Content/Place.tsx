@@ -1,6 +1,6 @@
 import Button from '@/app/components/Button';
 import Form from '@/app/components/Form';
-import Quiz from '@/app/components/Quiz';
+import Quiz, { QuizLayout } from '@/app/components/Quiz';
 import style from './Place.module.scss';
 import { useRecoilValue } from 'recoil';
 import { nickname as nicknameState } from '@/app/store';
@@ -16,7 +16,7 @@ export default function Place() {
 
   const { selections, point } = getStepData(3);
 
-  const { handleNext } = usePageRouter();
+  const { handleNext, step } = usePageRouter();
   const { handlePointChange } = usePoint();
 
   const [item, setItem] = useState<Item>();
@@ -40,7 +40,7 @@ export default function Place() {
   }, [item]);
 
   return (
-    <div>
+    <QuizLayout isActive={step === 2}>
       <Quiz>
         {nickname}님과 즐거운 시간을 <br />
         보낼 수 있는 곳은 어딜까요?
@@ -78,6 +78,6 @@ export default function Place() {
           </Button>
         </div>
       </Form>
-    </div>
+    </QuizLayout>
   );
 }

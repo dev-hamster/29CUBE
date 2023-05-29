@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Button from '@/app/components/Button';
 import Form from '@/app/components/Form';
-import Quiz from '@/app/components/Quiz';
+import Quiz, { QuizLayout } from '@/app/components/Quiz';
 import style from './Color.module.scss';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -55,7 +55,7 @@ export default function Texture() {
   const { getStepData } = useStepData();
   const { selections, point } = getStepData(5);
 
-  const { handleNext } = usePageRouter();
+  const { handleNext, step } = usePageRouter();
   const { handlePointChange } = usePoint();
 
   const [item, setItem] = useState<Item>();
@@ -79,7 +79,7 @@ export default function Texture() {
   }, [item]);
 
   return (
-    <div>
+    <QuizLayout isActive={step === 4}>
       <Quiz>
         {nickname}을 텍스쳐로 <br />
         표현한다면 어떤 모습일까요?
@@ -129,7 +129,7 @@ export default function Texture() {
               <div key={type} className={style.color}>
                 <input
                   type='radio'
-                  id={type + ''}
+                  id={'texture' + type}
                   name='texture'
                   value={point}
                   data-type={type}
@@ -139,7 +139,7 @@ export default function Texture() {
                     setItem({ type, point: parseInt(point) });
                   }}
                 />
-                <label htmlFor={type + ''} className={className}>
+                <label htmlFor={'texture' + type} className={className}>
                   <Image
                     src={`/images/texture${type}.png`}
                     width={136}
@@ -163,6 +163,6 @@ export default function Texture() {
           </Button>
         </div>
       </Form>
-    </div>
+    </QuizLayout>
   );
 }

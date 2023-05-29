@@ -55,6 +55,11 @@ main.result {
     padding: 0;
     margin: 0;
   }
+  a,
+  a:active {
+    appearance: none;
+    text-decoration: none;
+  }
 
   .save {
     display: flex;
@@ -138,8 +143,7 @@ main.result {
       font-size: 18px;
       line-height: 21px;
 
-      &:hover::after {
-        content: '전개도를 눌러 상세페이지로 이동해 보세요.';
+      .ballon {
         position: absolute;
         top: 29px;
         left: 7px;
@@ -150,11 +154,36 @@ main.result {
         font-weight: 600;
         font-size: 12px;
         line-height: 14px;
+
+        &:before {
+          content: '';
+          width: 0;
+          height: 0;
+          position: absolute;
+          top: -8px;
+          left: 28px;
+          border-left: 8px solid transparent;
+          border-right: 8px solid transparent;
+          border-bottom: 8px solid #fff;
+        }
+
+        &:after {
+          content: '';
+          width: 0;
+          height: 0;
+          position: absolute;
+          border-left: 6.5px solid transparent;
+          border-right: 6.5px solid transparent;
+          border-bottom: 6.5px solid #000;
+          top: -5.5px;
+          left: 29.5px;
+        }
       }
     }
 
     .box {
       padding: 50px 0;
+      background: rgba(0, 0, 0, 0.3);
     }
 
     .figure {

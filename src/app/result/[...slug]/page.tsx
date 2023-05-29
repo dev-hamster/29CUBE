@@ -9,6 +9,7 @@ import './page.scss';
 import { fetchResult } from '@/api';
 
 const screenshotId = 'screenshot';
+const ballonClassName = 'ballon';
 
 const onSaveAs = ({
   uri,
@@ -75,6 +76,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
 
   const [isCopied, setisCopied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
+  const [isBallon, setIsBallon] = useState(true);
 
   const CUBE_URL = `/images/result/${type}/cube.png`;
   const BG_URL = `/images/result/${type}/bg.png`;
@@ -134,6 +136,24 @@ export default function Page({ params }: { params: { slug: string[] } }) {
       style={{
         background: `no-repeat center url(${BG_URL})`,
       }}
+      onClick={(e) => {
+        const { target } = e;
+        const el = target as Element;
+
+        if (el.tagName === 'MAIN') {
+          setIsBallon(false);
+          return;
+        }
+
+        if (
+          el.classList.contains(ballonClassName) ||
+          el.querySelector(`.${ballonClassName}`)
+        ) {
+          setIsBallon(true);
+        } else {
+          setIsBallon(false);
+        }
+      }}
     >
       <div className='save'>
         <button className='btn' onClick={handleSave}>
@@ -156,7 +176,15 @@ export default function Page({ params }: { params: { slug: string[] } }) {
           <div className='box'>{data.survey_result_user_type_description}</div>
         </div>
         <div className='figure-container'>
-          <p>큐브 전개도</p>
+          <p>
+            큐브 전개도
+            <div
+              className={ballonClassName}
+              style={{ visibility: isBallon ? 'visible' : 'hidden' }}
+            >
+              전개도를 눌러 상세페이지로 이동해 보세요.
+            </div>
+          </p>
           <div className='box'>
             <div className='figure'>
               <div className='block'>

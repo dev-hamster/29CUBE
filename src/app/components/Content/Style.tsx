@@ -1,74 +1,122 @@
-'use client';
-
 import Image from 'next/image';
+import Button from '@/app/components/Button';
 import Form from '@/app/components/Form';
-import Quiz from '@/app/components/Quiz';
+import Quiz, { QuizLayout } from '@/app/components/Quiz';
 import style from './Style.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { nickname as nicknameState, gender as genderState } from '@/app/store';
+import { Item } from '@/app/utils/type';
+import usePoint from '@/app/hooks/usePoint';
+import Loading from '@/app/components/Loading';
+import useStepData from '@/app/hooks/useStepData';
+import usePageRouter from '@/app/hooks/usePageRouter';
+
+const MAX_ITEM = 3;
 
 export default function Style() {
-  const MAX_ITEM = 3;
-  const [items, setItems] = useState<string[]>([]);
+  const nickname = useRecoilValue(nicknameState);
+  const gender = useRecoilValue(genderState);
+  const { getStepData } = useStepData();
+  const { handlePointChange } = usePoint();
+  const { step } = usePageRouter();
 
-  const styles = [
-    { value: '1', url: '/images/style1.png' },
-    { value: '2', url: '/images/style2.png' },
-    { value: '3', url: '/images/style3.png' },
-    { value: '4', url: '/images/style4.png' },
-    { value: '5', url: '/images/style5.png' },
-    { value: '6', url: '/images/style6.png' },
-  ];
+  const { selections, point } = getStepData(7);
+  const [items, setItems] = useState<Item[]>([]);
+  const [isActive, setIsActive] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const validate = (value: any[]) => {
+    if (value.length === MAX_ITEM) {
+      setIsActive(true);
+      return;
+    }
+    setIsActive(false);
+  };
+
+  const handleSubmit = () => {
+    handlePointChange(items);
+    setIsLoading(true);
+  };
+
+  useEffect(() => {
+    validate(items);
+  }, [items]);
+
+  if (isLoading) {
+    return <Loading />;
+  }
 
   return (
-    <div>
+    <QuizLayout isActive={step === 6}>
       <Quiz>
         당신이 생각하는 <br />
-        응삼이만의 스타일이 있나요?
+        {nickname}만의 스타일이 있나요?
       </Quiz>
       <Form>
         <label htmlFor=''>그 모습과 가장 가까운 무드를 골라주세요.</label>
         <div className={style.container}>
-          {styles.map(({ value, url }) => {
+          {selections.map(({ contents: { imgUrl: url }, type }) => {
+            const isChecked = !!items.find(({ type: t }) => t === type);
             let className =
-              items.length === MAX_ITEM && !items.includes(value)
-                ? style.notchecked
-                : '';
+              items.length === MAX_ITEM && !isChecked ? style.disable : '';
 
             return (
-              <div key={value} className={style.color}>
+              <div key={type} className={style.color}>
                 <input
                   type='checkbox'
-                  id={value}
-                  name='color'
-                  value={value}
-                  checked={!!items.includes(value)}
+                  id={'style' + type}
+                  name='style'
+                  value={point}
+                  checked={isChecked}
+                  data-type={type}
                   onChange={(e) => {
-                    const { value, checked } = e.target;
+                    const { value: point, checked } = e.target;
+                    const type = parseInt(e.target.dataset.type as string);
+
                     if (items.length == MAX_ITEM) {
-                      if (items.includes(value)) {
-                        const copy = items.filter((x) => x !== value);
-                        setItems([...copy]);
-                      } else {
-                        const copy = items.slice(0, MAX_ITEM - 1);
-                        setItems([...copy]);
-                      }
+                      const copy = !checked
+                        ? items.filter(({ type: t }) => t !== type)
+                        : items.slice(0, MAX_ITEM - 1);
+                      setItems([...copy]);
                     }
 
                     if (checked) {
-                      setItems((prev: string[]) => [...prev, value]);
+                      setItems((prev) => [
+                        ...prev,
+                        { type, point: parseInt(point) },
+                      ]);
                     } else {
-                      setItems((prev) => prev.filter((x) => x !== value));
+                      setItems((prev) =>
+                        prev.filter(({ type: t }) => t !== type)
+                      );
                     }
                   }}
                 />
-                <label htmlFor={value} className={className}>
-                  <Image src={url} width={136} height={136} alt='' />
+                <label htmlFor={'style' + type} className={className}>
+                  <Image
+                    src={`/images/${gender}-style${type}.png`}
+                    width={136}
+                    height={136}
+                    alt=''
+                  />
                 </label>
               </div>
             );
           })}
         </div>
       </Form>
-    </div>
+      <div className='next-step'>
+        <Button
+          type='button'
+          handleClick={() => {
+            handleSubmit();
+          }}
+          isActive={isActive}
+        >
+          큐브 결과 보기
+        </Button>
+      </div>
+    </QuizLayout>
   );
 }

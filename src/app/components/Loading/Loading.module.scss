@@ -1,7 +1,10 @@
 .container {
+  position: absolute;
+  overflow: hidden;
+  inset: 0;
   height: 100vh;
-  background: #fff;
-  color: #000;
+  background: #000;
+  color: #fff;
 }
 
 .spinner {
@@ -28,9 +31,12 @@
 }
 
 .text {
+  position: relative;
+  z-index: 1;
   text-align: center;
 
   p {
+    margin: 0;
     padding: 0;
   }
   p:nth-child(1) {
@@ -44,4 +50,12 @@
     font-size: 32px;
     line-height: 38px;
   }
+}
+
+.loading {
+  transform: translate(-50%, 0);
+  position: relative;
+  width: 472px;
+  left: 50%;
+  top: -6%;
 }

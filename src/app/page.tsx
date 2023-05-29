@@ -1,8 +1,22 @@
+'use client';
+
 import Image from 'next/image';
 import Button from '@/app/components/Button';
 import './page.scss';
+import usePoint from '@/app/hooks/usePoint';
+import { use, useEffect } from 'react';
+import { fetchSteps } from '@/api';
+import useSteps from '@/app/hooks/useStepData';
+import useInit from '@/app/hooks/useInit';
 
 export default function Page() {
+  const { handleSetSteps } = useSteps();
+
+  useInit();
+  useEffect(() => {
+    fetchSteps().then((data) => handleSetSteps(data));
+  }, []);
+
   return (
     <main className='container'>
       <div className='desc'>

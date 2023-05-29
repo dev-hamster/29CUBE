@@ -1,55 +1,101 @@
-'use client';
-
 import Image from 'next/image';
+import Button from '@/app/components/Button';
 import Form from '@/app/components/Form';
-import Quiz from '@/app/components/Quiz';
+import Quiz, { QuizLayout } from '@/app/components/Quiz';
 import style from './Color.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import { nickname as nicknameState } from '@/app/store';
+import usePageRouter from '@/app/hooks/usePageRouter';
+import usePoint from '@/app/hooks/usePoint';
+import { Item } from '@/app/utils/type';
+import useSteps from '@/app/hooks/useStepData';
 
 export default function Color() {
-  const [checkedValue, setChecekdValue] = useState<null | string>(null);
+  const nickname = useRecoilValue(nicknameState);
+  const { getStepData } = useSteps();
+  const { selections, point } = getStepData(4);
 
-  const colors = [
-    { value: '1', url: '/images/color1.png' },
-    { value: '2', url: '/images/color2.png' },
-    { value: '3', url: '/images/color3.png' },
-    { value: '4', url: '/images/color4.png' },
-    { value: '5', url: '/images/color5.png' },
-    { value: '6', url: '/images/color6.png' },
-  ];
+  const { handleNext, step } = usePageRouter();
+  const { handlePointChange } = usePoint();
+
+  const [item, setItem] = useState<Item>();
+  const [isActive, setIsActive] = useState(false);
+
+  const validate = (value: Item) => {
+    if (value) {
+      setIsActive(true);
+      return;
+    }
+    setIsActive(false);
+  };
+
+  const handleSubmit = () => {
+    handlePointChange(item as Item);
+    handleNext();
+  };
+
+  useEffect(() => {
+    validate(item as Item);
+  }, [item]);
 
   return (
-    <div>
+    <QuizLayout isActive={step === 3}>
       <Quiz>
-        응삼이님 하면 이런 컬러, <br /> 이 중에 있나요?
+        {nickname}님 하면 이런 컬러, <br /> 이 중에 있나요?
       </Quiz>
       <Form>
         <label htmlFor=''>자연스럽게 떠오르는 컬러가 좋겠어요.</label>
         <div className={style.container}>
-          {colors.map(({ value, url }) => {
+          {selections.map(({ contents: { imgUrl: url }, type }) => {
             let className = '';
-            if (checkedValue === null) {
+            const checkedValue = item?.type.toString();
+
+            if (!checkedValue) {
               className = '';
             } else {
-              className = value === checkedValue ? '' : style.notchecked;
+              className =
+                type.toString() === checkedValue ? '' : style.notchecked;
             }
             return (
-              <div key={value} className={style.color}>
+              <div key={type} className={style.color}>
                 <input
                   type='radio'
-                  id={value}
+                  id={'color' + type}
                   name='color'
-                  value={value}
-                  onChange={() => setChecekdValue(value)}
+                  value={point}
+                  data-type={type}
+                  onChange={(e) => {
+                    console.log('hi');
+                    const { value: point } = e.target;
+                    const type = parseInt(e.target.dataset.type as string);
+                    setItem({ type, point: parseInt(point) });
+                  }}
                 />
-                <label htmlFor={value} className={className}>
-                  <Image src={url} width={136} height={136} alt='' />
+                <label htmlFor={'color' + type} className={className}>
+                  <Image
+                    src={`/images/color${type}.png`}
+                    width={136}
+                    height={136}
+                    alt=''
+                  />
                 </label>
               </div>
             );
           })}
         </div>
       </Form>
-    </div>
+      <div className='next-step'>
+        <Button
+          type='submit'
+          handleClick={() => {
+            handleSubmit();
+          }}
+          isActive={isActive}
+        >
+          다음
+        </Button>
+      </div>
+    </QuizLayout>
   );
 }

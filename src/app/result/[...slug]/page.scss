@@ -90,8 +90,11 @@ main.result {
   }
 
   .cube {
-    width: 100%;
-    margin-bottom: 76px;
+    position: relative;
+    width: 222px;
+    height: 222px;
+
+    margin: 0 auto 76px;
     display: flex;
     justify-content: center;
   }

@@ -66,18 +66,18 @@ export default function Place() {
             </div>
           ))}
         </div>
-        <div className='next-step'>
-          <Button
-            type='submit'
-            handleClick={() => {
-              handleSubmit();
-            }}
-            isActive={isActive}
-          >
-            다음
-          </Button>
-        </div>
       </Form>
+      <div className='next-step'>
+        <Button
+          type='submit'
+          handleClick={() => {
+            handleSubmit();
+          }}
+          isActive={isActive}
+        >
+          다음
+        </Button>
+      </div>
     </QuizLayout>
   );
 }

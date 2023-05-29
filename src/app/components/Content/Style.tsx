@@ -105,18 +105,18 @@ export default function Style() {
             );
           })}
         </div>
-        <div className='next-step'>
-          <Button
-            type='button'
-            handleClick={() => {
-              handleSubmit();
-            }}
-            isActive={isActive}
-          >
-            큐브 결과 보기
-          </Button>
-        </div>
       </Form>
+      <div className='next-step'>
+        <Button
+          type='button'
+          handleClick={() => {
+            handleSubmit();
+          }}
+          isActive={isActive}
+        >
+          큐브 결과 보기
+        </Button>
+      </div>
     </QuizLayout>
   );
 }

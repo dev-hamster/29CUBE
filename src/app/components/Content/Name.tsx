@@ -40,12 +40,12 @@ export default function Name() {
             setNickname(value);
           }}
         />
-        <div className='next-step fixed'>
-          <Button type='submit' handleClick={handleNext} isActive={isActive}>
-            다음
-          </Button>
-        </div>
       </Form>
+      <div className='next-step fixed'>
+        <Button type='submit' handleClick={handleNext} isActive={isActive}>
+          다음
+        </Button>
+      </div>
     </QuizLayout>
   );
 }

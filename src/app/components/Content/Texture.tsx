@@ -11,45 +11,6 @@ import usePoint from '@/app/hooks/usePoint';
 import { Item } from '@/app/utils/type';
 import useStepData from '@/app/hooks/useStepData';
 
-const colors = {
-  selections: [
-    {
-      contents: { imgUrl: '/images/step4/img2.jpg', imgId: 'img2' },
-      type: 2,
-    },
-    {
-      contents: { imgUrl: '/images/step4/img4.jpg', imgId: 'img4' },
-      type: 4,
-    },
-    {
-      contents: { imgUrl: '/images/step4/img6.jpg', imgId: 'img6' },
-      type: 6,
-    },
-    {
-      contents: { imgUrl: '/images/step4/img1.jpg', imgId: 'img1' },
-      type: 1,
-    },
-    {
-      contents: { imgUrl: '/images/step4/img3.jpg', imgId: 'img3' },
-      type: 3,
-    },
-    {
-      contents: { imgUrl: '/images/step4/img5.jpg', imgId: 'img5' },
-      type: 5,
-    },
-  ],
-  point: 2,
-};
-
-const textures = [
-  { value: '1', url: '/images/texture1.png' },
-  { value: '2', url: '/images/texture2.png' },
-  { value: '3', url: '/images/texture3.png' },
-  { value: '4', url: '/images/texture4.png' },
-  { value: '5', url: '/images/texture5.png' },
-  { value: '6', url: '/images/texture6.png' },
-];
-
 export default function Texture() {
   const nickname = useRecoilValue(nicknameState);
   const { getStepData } = useStepData();
@@ -151,18 +112,18 @@ export default function Texture() {
             );
           })}
         </div>
-        <div className='next-step'>
-          <Button
-            type='submit'
-            handleClick={() => {
-              handleSubmit();
-            }}
-            isActive={isActive}
-          >
-            다음
-          </Button>
-        </div>
       </Form>
+      <div className='next-step'>
+        <Button
+          type='submit'
+          handleClick={() => {
+            handleSubmit();
+          }}
+          isActive={isActive}
+        >
+          다음
+        </Button>
+      </div>
     </QuizLayout>
   );
 }

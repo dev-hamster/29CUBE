@@ -357,8 +357,8 @@ export default function Page({ params }: { params: { slug: string[] } }) {
       </div>
       <ToastBar show={isCopied}>링크를 저장했습니다.</ToastBar>
       <ToastBar show={isSaved}>
-        <span>
-          <Image width={12} height={12} alt='' src='/images/check-black.svg' />
+        <span style={{ marginRight: '16px' }}>
+          <Image width={12} height={12} alt='' src='/images/check_black.svg' />
         </span>
         이미지 저장 완료
       </ToastBar>

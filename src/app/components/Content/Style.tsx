@@ -9,19 +9,17 @@ import { nickname as nicknameState, gender as genderState } from '@/app/store';
 import { Item } from '@/app/utils/type';
 import usePoint from '@/app/hooks/usePoint';
 import Loading from '@/app/components/Loading';
-import useStepData from '@/app/hooks/useStepData';
 import usePageRouter from '@/app/hooks/usePageRouter';
+import { ContentProps } from './Content.type';
 
 const MAX_ITEM = 3;
 
-export default function Style() {
+export default function Style({ point, selections }: ContentProps) {
   const nickname = useRecoilValue(nicknameState);
   const gender = useRecoilValue(genderState);
-  const { getStepData } = useStepData();
   const { handlePointChange } = usePoint();
   const { step } = usePageRouter();
 
-  const { selections, point } = getStepData(7);
   const [items, setItems] = useState<Item[]>([]);
   const [isActive, setIsActive] = useState(false);
   const [isLoading, setIsLoading] = useState(false);

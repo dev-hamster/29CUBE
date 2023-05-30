@@ -15,10 +15,22 @@ import Style from '@/app/components/Content/Style';
 import Texture from '@/app/components/Content/Texture';
 import './layout.css';
 import usePageRouter from '@/app/hooks/usePageRouter';
+import useStepData from '@/app/hooks/useStepData';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 export default function QuizLayout() {
   const step = useRecoilValue(stepState);
   const keysIdx = useRecoilValue(keysIdxState);
+  const { steps, getStepData } = useStepData();
+
+  const router = useRouter();
+
+  useEffect(() => {
+    if (Object.keys(steps).length !== 6) {
+      router.push('/');
+    }
+  }, [router, steps]);
 
   const { handleBack } = usePageRouter();
 
@@ -46,12 +58,14 @@ export default function QuizLayout() {
       <Name />
       <Age />
       <Gender />
-      <Keywords />
-      <Place />
-      <Color />
-      <Texture />
-      <Stuff />
-      <Style />
+      {getStepData(2) && <Keywords {...getStepData(2)} />}
+      {getStepData(3) && <Place {...getStepData(3)} />}
+      {getStepData(4) && <Color {...getStepData(4)} />}
+      {getStepData(5) && <Texture {...getStepData(5)} />}
+      {getStepData(6) && <Stuff {...getStepData(6)} />}
+      {getStepData(7) && <Style {...getStepData(7)} />}
+      {/*
+       */}
     </main>
   );
 }

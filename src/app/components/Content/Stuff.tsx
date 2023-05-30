@@ -8,12 +8,10 @@ import usePageRouter from '@/app/hooks/usePageRouter';
 import { useEffect, useState } from 'react';
 import usePoint from '@/app/hooks/usePoint';
 import { Item } from '@/app/utils/type';
-import useStepData from '@/app/hooks/useStepData';
+import { ContentProps } from './Content.type';
 
-export default function Stuff() {
+export default function Stuff({ point, selections }: ContentProps) {
   const nickname = useRecoilValue(nicknameState);
-  const { getStepData } = useStepData();
-  const { selections, point } = getStepData(6);
 
   const { handleNext, step } = usePageRouter();
   const { handlePointChange } = usePoint();

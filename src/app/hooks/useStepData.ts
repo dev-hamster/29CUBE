@@ -1,4 +1,4 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { steps as quizSteps, step as stepState } from '@/app/store';
 
 const useStepData = () => {
@@ -9,7 +9,7 @@ const useStepData = () => {
     return steps[`step${order}`];
   };
 
-  return { getStepData, handleSetSteps };
+  return { steps, getStepData, handleSetSteps };
 };
 
 export default useStepData;

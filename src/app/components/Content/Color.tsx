@@ -9,12 +9,10 @@ import { nickname as nicknameState } from '@/app/store';
 import usePageRouter from '@/app/hooks/usePageRouter';
 import usePoint from '@/app/hooks/usePoint';
 import { Item } from '@/app/utils/type';
-import useSteps from '@/app/hooks/useStepData';
+import { ContentProps } from './Content.type';
 
-export default function Color() {
+export default function Color({ point, selections }: ContentProps) {
   const nickname = useRecoilValue(nicknameState);
-  const { getStepData } = useSteps();
-  const { selections, point } = getStepData(4);
 
   const { handleNext, step } = usePageRouter();
   const { handlePointChange } = usePoint();
@@ -66,7 +64,6 @@ export default function Color() {
                   value={point}
                   data-type={type}
                   onChange={(e) => {
-                    console.log('hi');
                     const { value: point } = e.target;
                     const type = parseInt(e.target.dataset.type as string);
                     setItem({ type, point: parseInt(point) });
@@ -84,18 +81,18 @@ export default function Color() {
             );
           })}
         </div>
+        <div className='next-step'>
+          <Button
+            type='submit'
+            handleClick={() => {
+              handleSubmit();
+            }}
+            isActive={isActive}
+          >
+            다음
+          </Button>
+        </div>
       </Form>
-      <div className='next-step'>
-        <Button
-          type='submit'
-          handleClick={() => {
-            handleSubmit();
-          }}
-          isActive={isActive}
-        >
-          다음
-        </Button>
-      </div>
     </QuizLayout>
   );
 }

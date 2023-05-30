@@ -8,13 +8,10 @@ import usePageRouter from '@/app/hooks/usePageRouter';
 import { useEffect, useState } from 'react';
 import usePoint from '@/app/hooks/usePoint';
 import { Item } from '@/app/utils/type';
-import useStepData from '@/app/hooks/useStepData';
+import { ContentProps } from './Content.type';
 
-export default function Place() {
+export default function Place({ point, selections }: ContentProps) {
   const nickname = useRecoilValue(nicknameState);
-  const { getStepData } = useStepData();
-
-  const { selections, point } = getStepData(3);
 
   const { handleNext, step } = usePageRouter();
   const { handlePointChange } = usePoint();

@@ -8,15 +8,13 @@ import { nickname as nicknameState } from '@/app/store';
 import usePageRouter from '@/app/hooks/usePageRouter';
 import { Item } from '@/app/utils/type';
 import usePoint from '@/app/hooks/usePoint';
-import useStepData from '@/app/hooks/useStepData';
+import { ContentProps } from './Content.type';
 
 const MAX_ITEM = 3;
 
 // TODO 세개 이상 선택시 버퍼 과리
 
-export default function Keywords() {
-  const { getStepData } = useStepData();
-  const { point, selections } = getStepData(2);
+export default function Keywords({ point, selections }: ContentProps) {
   const nickname = useRecoilValue(nicknameState);
   const { handlePointChange } = usePoint();
 

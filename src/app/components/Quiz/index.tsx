@@ -28,6 +28,7 @@ function QuizLayout({
 }) {
   const { handleNext, step: curStep } = usePageRouter();
   const show = isActivate || curStep + 1 === step;
+  const isLastPage = step === 7;
 
   return (
     <div className={`${style.layout} ${show && style.show}`}>
@@ -41,7 +42,7 @@ function QuizLayout({
           type='submit'
           isActive={isValid}
           handleClick={() => {
-            handleNext();
+            if (!isLastPage) handleNext();
             if (onSubmit) onSubmit();
           }}
         />

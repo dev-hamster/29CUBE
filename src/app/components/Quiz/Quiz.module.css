@@ -31,3 +31,10 @@
   opacity: 1;
   animation: slide-left 0.4s;
 }
+
+.nextStep {
+  position: absolute;
+  top: 57.05%;
+  right: 18px;
+  z-index: 10;
+}

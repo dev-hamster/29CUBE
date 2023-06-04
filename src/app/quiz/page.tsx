@@ -58,12 +58,12 @@ export default function QuizLayout() {
       <Name />
       <Age />
       <Gender />
-      {getStepData(2) && <Keywords {...getStepData(2)} />}
-      {getStepData(3) && <Place {...getStepData(3)} />}
-      {getStepData(4) && <Color {...getStepData(4)} />}
-      {getStepData(5) && <Texture {...getStepData(5)} />}
-      {getStepData(6) && <Stuff {...getStepData(6)} />}
-      {getStepData(7) && <Style {...getStepData(7)} />}
+      {getStepData(2) && <Keywords {...getStepData(2)} step={2} />}
+      {getStepData(3) && <Place {...getStepData(3)} step={3} />}
+      {getStepData(4) && <Color {...getStepData(4)} step={4} />}
+      {getStepData(5) && <Texture {...getStepData(5)} step={5} />}
+      {getStepData(6) && <Stuff {...getStepData(6)} step={6} />}
+      {getStepData(7) && <Style {...getStepData(7)} step={7} />}
       {/*
        */}
     </main>

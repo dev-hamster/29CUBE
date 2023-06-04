@@ -14,18 +14,10 @@ export default function Style({ point, selections, step }: ContentProps) {
   const gender = useRecoilValue(genderState);
   const { handlePointChange } = usePoint();
 
-  // const [items, setItems] = useState<Item[]>([]);
   const [item, setItem] = useState<Item>();
   const [isValid, setIsValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  // const validate = (value: any[]) => {
-  //   if (value.length === MAX_ITEM) {
-  //     setIsValid(true);
-  //     return;
-  //   }
-  //   setIsValid(false);
-  // };
   const validate = (value: Item) => {
     if (value) {
       setIsValid(true);
@@ -38,10 +30,6 @@ export default function Style({ point, selections, step }: ContentProps) {
     handlePointChange(item as Item);
     setIsLoading(true);
   };
-
-  // useEffect(() => {
-  //   validate(items);
-  // }, [items]);
 
   useEffect(() => {
     validate(item as Item);
@@ -64,9 +52,6 @@ export default function Style({ point, selections, step }: ContentProps) {
           <label htmlFor=''>그 모습과 가장 가까운 무드를 골라주세요.</label>
           <div className={style.container}>
             {selections.map(({ contents: { imgUrl: url }, type }) => {
-              // const isChecked = !!items.find(({ type: t }) => t === type);
-              // let className =
-              //   items.length === MAX_ITEM && !isChecked ? style.disable : '';
               let className = '';
               const checkedValue = item?.type.toString();
 
@@ -90,29 +75,6 @@ export default function Style({ point, selections, step }: ContentProps) {
                       const type = parseInt(e.target.dataset.type as string);
                       setItem({ type, point: parseInt(point) });
                     }}
-                    // checked={isChecked}
-                    // onChange={(e) => {
-                    //   const { value: point, checked } = e.target;
-                    //   const type = parseInt(e.target.dataset.type as string);
-
-                    //   if (items.length == MAX_ITEM) {
-                    //     const copy = !checked
-                    //       ? items.filter(({ type: t }) => t !== type)
-                    //       : items.slice(0, MAX_ITEM - 1);
-                    //     setItems([...copy]);
-                    //   }
-
-                    //   if (checked) {
-                    //     setItems((prev) => [
-                    //       ...prev,
-                    //       { type, point: parseInt(point) },
-                    //     ]);
-                    //   } else {
-                    //     setItems((prev) =>
-                    //       prev.filter(({ type: t }) => t !== type)
-                    //     );
-                    //   }
-                    // }}
                   />
                   <label htmlFor={'style' + type} className={className}>
                     <Image

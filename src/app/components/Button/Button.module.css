@@ -21,3 +21,10 @@
   color: #fff;
   background: #4d4d4d;
 }
+
+.arrow {
+  border-radius: 100%;
+  width: 36px;
+  height: 36px;
+  background: #fff;
+}

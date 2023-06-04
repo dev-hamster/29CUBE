@@ -1,12 +1,16 @@
 .container {
+  position: relative;
   min-height: 100vh;
+  overflow: hidden;
   background: #000;
   color: #fff;
   text-align: center;
 }
 
 .desc {
+  position: relative;
   padding-top: 120px;
+  z-index: 2;
 }
 
 .test-title {
@@ -31,6 +35,7 @@
 .test-title-logo {
   position: relative;
   padding-top: 20.51%;
+  margin-bottom: 27px;
 }
 
 .desc {
@@ -38,13 +43,19 @@
 }
 
 .gift {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 50%;
   box-sizing: border-box;
   /* margin: 0 10.26%; */
   /* padding-top: 20%; */
   margin: 0 auto;
-  height: 300px;
-  width: 300px;
+  // height: 300px;
+  // width: 300px;
+  max-width: 375px;
+  width: 100%;
+  height: 100vh;
+  transform: translate(-50%, 0);
 }
 
 .intro-desc {
@@ -57,8 +68,8 @@
 }
 
 .step-button {
-  display: flex;
-  justify-content: center;
-  margin-top: 15%;
-  padding-bottom: 70px;
+  position: absolute;
+  top: 47.05%;
+  right: 18px;
+  z-index: 10;
 }

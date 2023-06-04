@@ -4,15 +4,17 @@ import { useRecoilValue } from 'recoil';
 import { step as stepState, keysIdx as keysIdxState } from '@/app/store';
 import Image from 'next/image';
 import Process from '@/app/components/Process';
-import Age from '@/app/components/Content/Age';
-import Name from '@/app/components/Content/Name';
-import Gender from '@/app/components/Content/Gender';
-import Keywords from '@/app/components/Content/Keywords';
-import Place from '@/app/components/Content/Place';
-import Color from '@/app/components/Content/Color';
-import Stuff from '@/app/components/Content/Stuff';
-import Style from '@/app/components/Content/Style';
-import Texture from '@/app/components/Content/Texture';
+import {
+  Age,
+  Name,
+  Gender,
+  Keywords,
+  Place,
+  Color,
+  Stuff,
+  Style,
+  Texture,
+} from '@/app/components/Quiz/Content';
 import './layout.css';
 import usePageRouter from '@/app/hooks/usePageRouter';
 import useStepData from '@/app/hooks/useStepData';

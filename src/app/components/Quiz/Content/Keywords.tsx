@@ -9,8 +9,6 @@ import { ContentProps } from './Content.type';
 
 const MAX_ITEM = 3;
 
-// TODO 세개 이상 선택시 버퍼 과리
-
 export default function Keywords({ point, selections, step }: ContentProps) {
   const nickname = useRecoilValue(nicknameState);
   const { handlePointChange } = usePoint();
@@ -48,39 +46,54 @@ export default function Keywords({ point, selections, step }: ContentProps) {
           <div className={style.container}>
             {selections.map(({ contents, type }) => (
               <div className={style.group} key={type}>
-                {contents.map((text: string, i: number) => (
-                  <div className={style.wrapper} key={`${type}${i}`}>
-                    <input
-                      id={`${type}${i}`}
-                      type='checkbox'
-                      value={point}
-                      data-type={type}
-                      onChange={(e) => {
-                        const { value: point, checked } = e.target;
-                        const type = parseInt(e.target.dataset.type as string);
-
-                        if (items.length == MAX_ITEM) {
-                          const copy = !checked
-                            ? items.filter(({ type: t }) => t !== type)
-                            : items.slice(0, MAX_ITEM - 1);
-                          setItems([...copy]);
-                        }
-
-                        if (checked) {
-                          setItems((prev) => [
-                            ...prev,
-                            { type, point: parseInt(point) },
-                          ]);
-                        } else {
-                          setItems((prev) =>
-                            prev.filter(({ type: t }) => t !== type)
+                {contents.map((text: string, i: number) => {
+                  const key = `${type}${i}`;
+                  const isChecked = !!items.find(
+                    ({ type: t }) => t + '' === key
+                  );
+                  let className =
+                    items.length === MAX_ITEM && !isChecked
+                      ? style.disable
+                      : '';
+                  return (
+                    <div className={style.wrapper} key={key}>
+                      <input
+                        id={key}
+                        type='checkbox'
+                        value={point}
+                        data-type={key}
+                        checked={isChecked}
+                        onChange={(e) => {
+                          const { value: point, checked } = e.target;
+                          const type = parseInt(
+                            e.target.dataset.type as string
                           );
-                        }
-                      }}
-                    />
-                    <label htmlFor={`${type}${i}`}>{text}</label>
-                  </div>
-                ))}
+
+                          if (items.length == MAX_ITEM) {
+                            const copy = !checked
+                              ? items.filter(({ type: t }) => t !== type)
+                              : items.slice(0, MAX_ITEM - 1);
+                            setItems([...copy]);
+                          }
+
+                          if (checked) {
+                            setItems((prev) => [
+                              ...prev,
+                              { type, point: parseInt(point) },
+                            ]);
+                          } else {
+                            setItems((prev) =>
+                              prev.filter(({ type: t }) => t !== type)
+                            );
+                          }
+                        }}
+                      />
+                      <label htmlFor={key} className={className}>
+                        {text}
+                      </label>
+                    </div>
+                  );
+                })}
               </div>
             ))}
           </div>

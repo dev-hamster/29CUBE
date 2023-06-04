@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { QuizLayout } from '@/app/components/Quiz';
-import style from './Style.module.scss';
+import style from './Color.module.scss';
 import { useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { nickname as nicknameState, gender as genderState } from '@/app/store';
@@ -9,19 +9,25 @@ import usePoint from '@/app/hooks/usePoint';
 import Loading from '@/app/components/Loading';
 import { ContentProps } from './Content.type';
 
-const MAX_ITEM = 3;
-
 export default function Style({ point, selections, step }: ContentProps) {
   const nickname = useRecoilValue(nicknameState);
   const gender = useRecoilValue(genderState);
   const { handlePointChange } = usePoint();
 
-  const [items, setItems] = useState<Item[]>([]);
+  // const [items, setItems] = useState<Item[]>([]);
+  const [item, setItem] = useState<Item>();
   const [isValid, setIsValid] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const validate = (value: any[]) => {
-    if (value.length === MAX_ITEM) {
+  // const validate = (value: any[]) => {
+  //   if (value.length === MAX_ITEM) {
+  //     setIsValid(true);
+  //     return;
+  //   }
+  //   setIsValid(false);
+  // };
+  const validate = (value: Item) => {
+    if (value) {
       setIsValid(true);
       return;
     }
@@ -29,13 +35,17 @@ export default function Style({ point, selections, step }: ContentProps) {
   };
 
   const handleSubmit = () => {
-    handlePointChange(items);
+    handlePointChange(item as Item);
     setIsLoading(true);
   };
 
+  // useEffect(() => {
+  //   validate(items);
+  // }, [items]);
+
   useEffect(() => {
-    validate(items);
-  }, [items]);
+    validate(item as Item);
+  }, [item]);
 
   if (isLoading) {
     return <Loading />;
@@ -54,47 +64,60 @@ export default function Style({ point, selections, step }: ContentProps) {
           <label htmlFor=''>그 모습과 가장 가까운 무드를 골라주세요.</label>
           <div className={style.container}>
             {selections.map(({ contents: { imgUrl: url }, type }) => {
-              const isChecked = !!items.find(({ type: t }) => t === type);
-              let className =
-                items.length === MAX_ITEM && !isChecked ? style.disable : '';
+              // const isChecked = !!items.find(({ type: t }) => t === type);
+              // let className =
+              //   items.length === MAX_ITEM && !isChecked ? style.disable : '';
+              let className = '';
+              const checkedValue = item?.type.toString();
+
+              if (!checkedValue) {
+                className = '';
+              } else {
+                className =
+                  type.toString() === checkedValue ? '' : style.notchecked;
+              }
 
               return (
                 <div key={type} className={style.color}>
                   <input
-                    type='checkbox'
+                    type='radio'
                     id={'style' + type}
                     name='style'
                     value={point}
-                    checked={isChecked}
                     data-type={type}
                     onChange={(e) => {
-                      const { value: point, checked } = e.target;
+                      const { value: point } = e.target;
                       const type = parseInt(e.target.dataset.type as string);
-
-                      if (items.length == MAX_ITEM) {
-                        const copy = !checked
-                          ? items.filter(({ type: t }) => t !== type)
-                          : items.slice(0, MAX_ITEM - 1);
-                        setItems([...copy]);
-                      }
-
-                      if (checked) {
-                        setItems((prev) => [
-                          ...prev,
-                          { type, point: parseInt(point) },
-                        ]);
-                      } else {
-                        setItems((prev) =>
-                          prev.filter(({ type: t }) => t !== type)
-                        );
-                      }
+                      setItem({ type, point: parseInt(point) });
                     }}
+                    // checked={isChecked}
+                    // onChange={(e) => {
+                    //   const { value: point, checked } = e.target;
+                    //   const type = parseInt(e.target.dataset.type as string);
+
+                    //   if (items.length == MAX_ITEM) {
+                    //     const copy = !checked
+                    //       ? items.filter(({ type: t }) => t !== type)
+                    //       : items.slice(0, MAX_ITEM - 1);
+                    //     setItems([...copy]);
+                    //   }
+
+                    //   if (checked) {
+                    //     setItems((prev) => [
+                    //       ...prev,
+                    //       { type, point: parseInt(point) },
+                    //     ]);
+                    //   } else {
+                    //     setItems((prev) =>
+                    //       prev.filter(({ type: t }) => t !== type)
+                    //     );
+                    //   }
+                    // }}
                   />
                   <label htmlFor={'style' + type} className={className}>
                     <Image
                       src={`/images/${gender}-style${type}.png`}
-                      width={136}
-                      height={136}
+                      fill
                       alt=''
                     />
                   </label>

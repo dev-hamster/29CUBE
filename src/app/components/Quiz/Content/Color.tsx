@@ -14,14 +14,14 @@ export default function Color({ point, selections, step }: ContentProps) {
   const { handlePointChange } = usePoint();
 
   const [item, setItem] = useState<Item>();
-  const [isValid, setisValid] = useState(false);
+  const [isValid, setIsValid] = useState(false);
 
   const validate = (value: Item) => {
     if (value) {
-      setisValid(true);
+      setIsValid(true);
       return;
     }
-    setisValid(false);
+    setIsValid(false);
   };
 
   const handleSubmit = () => {
@@ -68,12 +68,7 @@ export default function Color({ point, selections, step }: ContentProps) {
                     }}
                   />
                   <label htmlFor={'color' + type} className={className}>
-                    <Image
-                      src={`/images/color${type}.png`}
-                      width={136}
-                      height={136}
-                      alt=''
-                    />
+                    <Image src={`/images/color${type}.png`} fill alt='' />
                   </label>
                 </div>
               );

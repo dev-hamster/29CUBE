@@ -97,12 +97,7 @@ export default function Texture({ point, selections, step }: ContentProps) {
                     }}
                   />
                   <label htmlFor={'texture' + type} className={className}>
-                    <Image
-                      src={`/images/texture${type}.png`}
-                      width={136}
-                      height={136}
-                      alt=''
-                    />
+                    <Image src={`/images/texture${type}.png`} fill alt='' />
                   </label>
                 </div>
               );

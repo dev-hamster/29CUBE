@@ -41,7 +41,7 @@ export default function Stuff({ point, selections, step }: ContentProps) {
       }
       Form={
         <>
-          <label htmlFor=''>연상되는 물건을 골라주세요.</label>
+          <label htmlFor=''>연상되는 물건을 하나 골라주세요.</label>
           <div className={style.container}>
             {selections.map(({ contents, type }) => (
               <div className={style.wrapper} key={type}>

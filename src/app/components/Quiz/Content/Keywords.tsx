@@ -42,7 +42,7 @@ export default function Keywords({ point, selections, step }: ContentProps) {
       }
       Form={
         <>
-          <label htmlFor=''>3가지 키워드를 선택해 주세요!</label>
+          <label htmlFor=''>어울리는 키워드를 3가지 선택해 주세요!</label>
           <div className={style.container}>
             {selections.map(({ contents, type }) => (
               <div className={style.group} key={type}>

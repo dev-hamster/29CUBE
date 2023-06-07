@@ -34,6 +34,7 @@ export default function Gender() {
       }
       Form={
         <>
+          <label htmlFor=''>성별을 선택해 주세요!</label>
           <div className='gender-container'>
             <input
               type='radio'

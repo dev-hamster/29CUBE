@@ -49,7 +49,9 @@ export default function Style({ point, selections, step }: ContentProps) {
       }
       Form={
         <>
-          <label htmlFor=''>그 모습과 가장 가까운 무드를 골라주세요.</label>
+          <label htmlFor=''>
+            그 모습과 가장 가까운 무드를 하나 골라주세요.
+          </label>
           <div className={style.container}>
             {selections.map(({ contents: { imgUrl: url }, type }) => {
               let className = '';

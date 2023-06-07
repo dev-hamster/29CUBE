@@ -41,7 +41,9 @@ export default function Color({ point, selections, step }: ContentProps) {
       }
       Form={
         <>
-          <label htmlFor=''>자연스럽게 떠오르는 컬러가 좋겠어요.</label>
+          <label htmlFor=''>
+            자연스럽게 떠오르는 컬러를 하나 선택해 주세요.
+          </label>
           <div className={style.container}>
             {selections.map(({ contents: { imgUrl: url }, type }) => {
               let className = '';

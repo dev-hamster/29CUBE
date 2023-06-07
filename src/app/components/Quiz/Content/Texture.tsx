@@ -42,7 +42,7 @@ export default function Texture({ point, selections, step }: ContentProps) {
       }
       Form={
         <>
-          <label htmlFor=''>한 개의 텍스쳐를 골라주세요.</label>
+          <label htmlFor=''>어울리는 텍스처를 하나 선택해 주세요.</label>
           <div className={style.container}>
             {/* {textures.map(({ value, url }) => {
         let className = '';

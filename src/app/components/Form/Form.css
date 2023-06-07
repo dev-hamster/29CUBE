@@ -45,7 +45,7 @@
 .form > .gender-container {
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  width: 214px;
   border: solid #4d4d4d;
   border-width: 2px 0 0 2px;
 }
@@ -55,7 +55,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 51px;
+  height: 45px;
   box-sizing: border-box;
   border: solid #4d4d4d;
   border-width: 0 2px 2px 0;
@@ -76,8 +76,9 @@ label[for='unknown'] {
 }
 
 .gender-container input[type='radio'] {
-  appearance: none;
+  display: none;
   margin: 0;
+  appearance: none;
 }
 
 .gender-container input:checked + label {

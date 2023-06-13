@@ -202,7 +202,7 @@ main.result {
         }
 
         .text {
-          padding: 20px 10px 0 10px;
+          padding: 20px 0;
 
           .brand {
             margin-bottom: 10px;
@@ -258,7 +258,11 @@ main.result {
         }
 
         .left {
+          padding-right: 10px;
           text-align: right;
+        }
+        .right {
+          padding-left: 10px;
         }
       }
     }
@@ -289,6 +293,7 @@ main.result {
       margin-bottom: 14px;
 
       .brand {
+        border: 1px solid rgba(238, 238, 238, 1);
         position: relative;
         width: 97px;
         height: 99px;

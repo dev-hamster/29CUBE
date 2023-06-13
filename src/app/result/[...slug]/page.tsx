@@ -204,15 +204,15 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                 </div>
                 <div className='text right'>
                   <a
-                    href={data.cube_expansion[1].cube_expansion_image_address}
+                    href={data.cube_expansion[2].cube_expansion_image_address}
                     target='_blank'
                     rel='noreferrer noopener'
                   >
                     <p className='brand'>
-                      {data.cube_expansion[1].cube_expansion_image_name}
+                      {data.cube_expansion[2].cube_expansion_image_name}
                     </p>
                     <p className='product'>
-                      {data.cube_expansion[1].cube_expansion_image_description}
+                      {data.cube_expansion[2].cube_expansion_image_description}
                     </p>
                   </a>
                 </div>
@@ -222,16 +222,16 @@ export default function Page({ params }: { params: { slug: string[] } }) {
               <div className='block'>
                 <div className='text left'>
                   <a
-                    href={data.cube_expansion[2].cube_expansion_image_address}
+                    href={data.cube_expansion[1].cube_expansion_image_address}
                     target='_blank'
                     rel='noreferrer noopener'
                   >
                     <p className='brand'>
-                      {data.cube_expansion[2].cube_expansion_image_name}
+                      {data.cube_expansion[1].cube_expansion_image_name}
                     </p>
                   </a>
                   <p className='product'>
-                    {data.cube_expansion[2].cube_expansion_image_description}
+                    {data.cube_expansion[1].cube_expansion_image_description}
                   </p>
                 </div>
                 <div className='image border-top'>
@@ -280,25 +280,6 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                 </div>
                 <div className='text right'>
                   <a
-                    href={data.cube_expansion[3].cube_expansion_image_address}
-                    target='_blank'
-                    rel='noreferrer noopener'
-                  >
-                    <p className='brand'>
-                      {data.cube_expansion[3].cube_expansion_image_name}
-                    </p>
-
-                    <p className='product'>
-                      {data.cube_expansion[3].cube_expansion_image_description}
-                    </p>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className='figure'>
-              <div className='block'>
-                <div className='text left'>
-                  <a
                     href={data.cube_expansion[4].cube_expansion_image_address}
                     target='_blank'
                     rel='noreferrer noopener'
@@ -309,6 +290,25 @@ export default function Page({ params }: { params: { slug: string[] } }) {
 
                     <p className='product'>
                       {data.cube_expansion[4].cube_expansion_image_description}
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className='figure'>
+              <div className='block'>
+                <div className='text left'>
+                  <a
+                    href={data.cube_expansion[3].cube_expansion_image_address}
+                    target='_blank'
+                    rel='noreferrer noopener'
+                  >
+                    <p className='brand'>
+                      {data.cube_expansion[3].cube_expansion_image_name}
+                    </p>
+
+                    <p className='product'>
+                      {data.cube_expansion[3].cube_expansion_image_description}
                     </p>
                   </a>
                 </div>

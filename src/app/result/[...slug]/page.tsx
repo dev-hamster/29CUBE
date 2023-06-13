@@ -149,7 +149,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
     >
       <div className='save'>
         <button className='btn' onClick={handleSave}>
-          <Image src='/images/save.svg' fill alt='' />
+          <Image src='/images/save.svg' width={20} height={20} alt='' />
         </button>
       </div>
 

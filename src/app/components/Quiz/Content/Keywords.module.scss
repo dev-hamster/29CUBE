@@ -1,5 +1,6 @@
 .group {
   display: grid;
+  gap: 6px;
 }
 
 .center {
@@ -11,7 +12,7 @@
   grid-template-columns: repeat(2, 72px);
   justify-content: center;
   align-content: center;
-  gap: 16px;
+  gap: 20px;
 }
 
 .wrapper {

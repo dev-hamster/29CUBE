@@ -78,7 +78,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
   const [isSaved, setIsSaved] = useState(false);
   const [isBallon, setIsBallon] = useState(true);
 
-  const CUBE_URL = `/images/result/${type}/cube.png`;
+  const CUBE_URL = `/images/result/${type}/cube.4x.png`;
   const BG_URL = `/images/result/${type}/bg.png`;
   const CUBE_EXTENSTION_URL = (order: number) =>
     `/images/result/${type}/${gender}/${order}.png`;
@@ -105,13 +105,11 @@ export default function Page({ params }: { params: { slug: string[] } }) {
 
     const timer = setTimeout(() => {
       setisCopied((prev) => !prev);
-      console.log('after timre', isCopied);
     }, 3000);
 
     return () => {
       clearTimeout(timer);
       setisCopied(false);
-      console.log('clean up', isCopied);
     };
   }, [isCopied]);
 
@@ -120,7 +118,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
 
     const timer = setTimeout(() => {
       setIsSaved(false);
-    }, 3200);
+    }, 3000);
 
     return () => {
       clearTimeout(timer);

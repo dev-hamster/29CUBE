@@ -52,21 +52,21 @@ function step3(gender: any) {
   var data;
   if (gender == 'male') {
     data = [
-      { contents: '탁 트인 자연의 풍경을 즐길 수 있는 캠핑장', type: 1 },
-      { contents: '유리창 가득 오션 뷰가 펼쳐진 럭셔리 풀빌라', type: 2 },
-      { contents: '초록 식물 사이로 햇살이 비치는 우드톤의 실내', type: 3 },
-      { contents: '문화적인 경험을 다채롭게 즐길 수 있는 갤러리', type: 4 },
-      { contents: '차분한 모노톤으로 깔끔하게 디자인된 카페', type: 5 },
-      { contents: '스마트 기기 체험 존이 있는 테크 쇼핑몰', type: 6 },
+      {contents : "탁 트인 자연의 풍경을 <br/> 즐길 수 있는 캠핑장", type : 1}, 
+      {contents : "유리창 가득 오션뷰가 <br/> 펼쳐진 럭셔리 풀빌라", type : 2}, 
+      {contents : "초록 식물 사이로 햇살이 <br/> 비치는 우드톤의 실내", type : 3}, 
+      {contents : "문화적인 경험을 다채롭게 <br/> 즐길 수 있는 갤러리", type : 4}, 
+      {contents : "차분한 모노톤으로 <br/> 깔끔하게 디자인된 카페", type : 5}, 
+      {contents : "스마트 기기 체험 존이 있는 <br/> 테크 쇼핑몰", type : 6}, 
     ];
   } else {
     data = [
-      { contents: '탁 트인 자연의 풍경을 즐길 수 있는 캠핑장', type: 1 },
-      { contents: '유리창 가득 오션 뷰가 펼쳐진 럭셔리 풀빌라', type: 2 },
-      { contents: '초록 식물 사이로 햇살이 비치는 우드톤의 실내', type: 3 },
-      { contents: '문화적인 경험을 다채롭게 즐길 수 있는 갤러리', type: 4 },
-      { contents: '차분한 모노톤으로 깔끔하게 디자인된 카페', type: 5 },
-      { contents: '스마트 기기 체험 존이 있는 테크 쇼핑몰', type: 6 },
+      {contents : "탁 트인 자연의 풍경을 <br/> 즐길 수 있는 캠핑장", type : 1}, 
+      {contents : "유리창 가득 오션뷰가 <br/> 펼쳐진 럭셔리 풀빌라", type : 2}, 
+      {contents : "초록 식물 사이로 햇살이 <br/> 비치는 우드톤의 실내", type : 3}, 
+      {contents : "문화적인 경험을 다채롭게 <br/> 즐길 수 있는 갤러리", type : 4}, 
+      {contents : "차분한 모노톤으로 <br/> 깔끔하게 디자인된 카페", type : 5}, 
+      {contents : "스마트 기기 체험 존이 있는 <br/> 테크 쇼핑몰", type : 6}, 
     ];
   }
 
@@ -223,21 +223,21 @@ function step6(gender: any) {
   var data;
   if (gender == 'male') {
     data = [
-      { contents: '가파른 산도 거뜬한 등산화', type: 1 },
-      { contents: '뉴욕 패션위크가 떠오르는 선글라스', type: 2 },
-      { contents: '따뜻하고 포근한 감성을 가진 수면양말', type: 3 },
-      { contents: '온전히 자신의 세계에 집중할 수 있는 헤드셋', type: 4 },
-      { contents: '용도별 깔끔하게 정리된 서랍장', type: 5 },
-      { contents: '간편하고 편리한 일체형 배터리 팩', type: 6 },
+      {contents : "가파른 산도 <br/> 거뜬한 등산화", type : 1}, 
+      {contents : "뉴욕 패션위크가 <br/> 떠오르는 선글라스", type : 2}, 
+      {contents : "따뜻하고 포근한 감성을 <br/> 가진 수면양말", type : 3}, 
+      {contents : "온전히 자신의 세계에 <br/> 집중할 수 있는 헤드셋", type : 4}, 
+      {contents : "용도별 깔끔하게 <br/> 정리된 서랍장", type : 5}, 
+      {contents : "간편하고 편리한 <br/> 일체형 배터리 팩", type : 6}, 
     ];
   } else {
     data = [
-      { contents: '가파른 산도 거뜬한 등산화', type: 1 },
-      { contents: '뉴욕 패션위크가 떠오르는 선글라스', type: 2 },
-      { contents: '따뜻하고 포근한 감성을 가진 수면양말', type: 3 },
-      { contents: '온전히 자신의 세계에 집중할 수 있는 헤드셋', type: 4 },
-      { contents: '용도별 깔끔하게 정리된 서랍장', type: 5 },
-      { contents: '간편하고 편리한 일체형 배터리 팩', type: 6 },
+      {contents : "가파른 산도 <br/> 거뜬한 등산화", type : 1}, 
+      {contents : "뉴욕 패션위크가 <br/> 떠오르는 선글라스", type : 2}, 
+      {contents : "따뜻하고 포근한 감성을 <br/> 가진 수면양말", type : 3}, 
+      {contents : "온전히 자신의 세계에 <br/> 집중할 수 있는 헤드셋", type : 4}, 
+      {contents : "용도별 깔끔하게 <br/> 정리된 서랍장", type : 5}, 
+      {contents : "간편하고 편리한 <br/> 일체형 배터리 팩", type : 6}, 
     ];
   }
   data = shuffleArray(data);

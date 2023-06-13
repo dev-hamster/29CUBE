@@ -57,7 +57,12 @@ export default function Stuff({ point, selections, step }: ContentProps) {
                     setItem({ type, point });
                   }}
                 />
-                <label htmlFor={'stuff' + type}>{contents}</label>
+                <label
+                  htmlFor={'stuff' + type}
+                  ref={(el) => {
+                    if (el) el.innerHTML = contents;
+                  }}
+                ></label>
               </div>
             ))}
           </div>

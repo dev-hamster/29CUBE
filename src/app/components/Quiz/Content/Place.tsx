@@ -57,7 +57,12 @@ export default function Place({ point, selections, step }: ContentProps) {
                     setItem({ type, point });
                   }}
                 />
-                <label htmlFor={type + ''}>{contents}</label>
+                <label
+                  htmlFor={type + ''}
+                  ref={(el) => {
+                    if (el) el.innerHTML = contents;
+                  }}
+                ></label>
               </div>
             ))}
           </div>

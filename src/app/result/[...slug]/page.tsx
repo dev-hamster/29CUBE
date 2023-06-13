@@ -188,9 +188,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                     <p className='brand'>
                       {data.cube_expansion[0].cube_expansion_image_name}
                     </p>
-                    <p className='product'>
-                      {data.cube_expansion[0].cube_expansion_image_description}
-                    </p>
+                    <p
+                      className='product'
+                      ref={(el) => {
+                        if (el)
+                          el.innerHTML =
+                            data.cube_expansion[0].cube_expansion_image_description;
+                      }}
+                    ></p>
                   </a>
                 </div>
                 <div className='image'>
@@ -212,9 +217,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                     <p className='brand'>
                       {data.cube_expansion[2].cube_expansion_image_name}
                     </p>
-                    <p className='product'>
-                      {data.cube_expansion[2].cube_expansion_image_description}
-                    </p>
+                    <p
+                      className='product'
+                      ref={(el) => {
+                        if (el)
+                          el.innerHTML =
+                            data.cube_expansion[2].cube_expansion_image_description;
+                      }}
+                    ></p>
                   </a>
                 </div>
               </div>
@@ -231,9 +241,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                       {data.cube_expansion[1].cube_expansion_image_name}
                     </p>
                   </a>
-                  <p className='product'>
-                    {data.cube_expansion[1].cube_expansion_image_description}
-                  </p>
+                  <p
+                    className='product'
+                    ref={(el) => {
+                      if (el)
+                        el.innerHTML =
+                          data.cube_expansion[1].cube_expansion_image_description;
+                    }}
+                  ></p>
                 </div>
                 <div className='image border-top'>
                   <a
@@ -289,9 +304,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                       {data.cube_expansion[4].cube_expansion_image_name}
                     </p>
 
-                    <p className='product'>
-                      {data.cube_expansion[4].cube_expansion_image_description}
-                    </p>
+                    <p
+                      className='product'
+                      ref={(el) => {
+                        if (el)
+                          el.innerHTML =
+                            data.cube_expansion[4].cube_expansion_image_description;
+                      }}
+                    ></p>
                   </a>
                 </div>
               </div>
@@ -308,9 +328,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                       {data.cube_expansion[3].cube_expansion_image_name}
                     </p>
 
-                    <p className='product'>
-                      {data.cube_expansion[3].cube_expansion_image_description}
-                    </p>
+                    <p
+                      className='product'
+                      ref={(el) => {
+                        if (el)
+                          el.innerHTML =
+                            data.cube_expansion[3].cube_expansion_image_description;
+                      }}
+                    ></p>
                   </a>
                 </div>
                 <div className='image border-top'>
@@ -333,9 +358,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                       {data.cube_expansion[5].cube_expansion_image_name}
                     </p>
 
-                    <p className='product'>
-                      {data.cube_expansion[5].cube_expansion_image_description}
-                    </p>
+                    <p
+                      className='product'
+                      ref={(el) => {
+                        if (el)
+                          el.innerHTML =
+                            data.cube_expansion[5].cube_expansion_image_description;
+                      }}
+                    ></p>
                   </a>
                 </div>
               </div>

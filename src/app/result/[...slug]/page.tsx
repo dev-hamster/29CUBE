@@ -7,6 +7,7 @@ import html2canvas from 'html2canvas';
 import Button from '@/app/components/Button';
 import './page.scss';
 import { fetchResult } from '@/api';
+import Shadow from '@/app/components/Shadow';
 
 const screenshotId = 'screenshot';
 const ballonClassName = 'ballon_title';
@@ -402,7 +403,13 @@ export default function Page({ params }: { params: { slug: string[] } }) {
           </Button>
         </div>
         <Link href='/'>다시 해보기</Link>
-        <div className='grad'></div>
+        <Shadow
+          styles={{
+            height: '149px',
+            left: 0,
+            bottom: 0,
+          }}
+        />
       </div>
       <ToastBar show={isCopied}>링크를 저장했습니다.</ToastBar>
       <ToastBar show={isSaved}>

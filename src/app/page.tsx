@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { fetchSteps } from '@/api';
 import useSteps from '@/app/hooks/useStepData';
 import useInit from '@/app/hooks/useInit';
+import Shadow from './components/Shadow';
 
 export default function Page() {
   const { handleSetSteps } = useSteps();
@@ -34,7 +35,20 @@ export default function Page() {
       </div>
 
       <div className='gift'>
+        <Shadow
+          styles={{
+            zIndex: 1,
+            height: '257px',
+            rotate: '180deg',
+          }}
+        />
         <Image src='/images/cube.png' fill alt='' />
+        <Shadow
+          styles={{
+            bottom: 0,
+            zIndex: 1,
+          }}
+        />
       </div>
 
       <div className='step-button'>

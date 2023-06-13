@@ -137,6 +137,7 @@ main.result {
 
     > p {
       position: relative;
+      display: inline-block;
       margin-bottom: 14px;
       font-style: normal;
       font-weight: 600;
@@ -147,13 +148,16 @@ main.result {
         position: absolute;
         top: 29px;
         left: 7px;
-        padding: 13px 12px 11px;
+        box-sizing: border-box;
+        padding: 12px 0;
+        width: 226px;
         border-radius: 5px;
         background: #000000;
         border: 1.5px solid #ffffff;
         font-weight: 600;
         font-size: 12px;
         line-height: 14px;
+        text-align: center;
 
         &:before {
           content: '';

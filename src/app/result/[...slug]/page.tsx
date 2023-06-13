@@ -9,7 +9,7 @@ import './page.scss';
 import { fetchResult } from '@/api';
 
 const screenshotId = 'screenshot';
-const ballonClassName = 'ballon';
+const ballonClassName = 'ballon_title';
 
 const onSaveAs = ({
   uri,
@@ -140,16 +140,8 @@ export default function Page({ params }: { params: { slug: string[] } }) {
         const { target } = e;
         const el = target as Element;
 
-        if (el.tagName === 'MAIN') {
-          setIsBallon(false);
-          return;
-        }
-
-        if (
-          el.classList.contains(ballonClassName) ||
-          el.querySelector(`.${ballonClassName}`)
-        ) {
-          setIsBallon(true);
+        if (el.classList.contains(ballonClassName)) {
+          setIsBallon((prev) => !prev);
         } else {
           setIsBallon(false);
         }
@@ -176,10 +168,10 @@ export default function Page({ params }: { params: { slug: string[] } }) {
           <div className='box'>{data.survey_result_user_type_description}</div>
         </div>
         <div className='figure-container'>
-          <p>
+          <p className={ballonClassName}>
             큐브 전개도
             <div
-              className={ballonClassName}
+              className='ballon'
               style={{ visibility: isBallon ? 'visible' : 'hidden' }}
             >
               전개도를 눌러 상세페이지로 이동해 보세요.

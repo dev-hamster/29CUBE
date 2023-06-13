@@ -1,9 +1,9 @@
 .container {
   display: grid;
-  grid-template-columns: repeat(2, 136px);
+  grid-template-columns: repeat(2, 103px);
   justify-content: center;
   align-content: center;
-  gap: 14px;
+  gap: 8px;
   width: 100%;
 }
 
@@ -14,8 +14,8 @@
 .color {
   position: relative;
   display: flex;
-  width: 136px;
-  height: 136px;
+  width: 103px;
+  height: 103px;
 
   label {
     display: relative;
@@ -33,7 +33,7 @@
     color: #000;
   }
 
-  input:checked + label::before {
+  input:checked + label::after {
     content: '';
     background: url('/images/check.svg') no-repeat;
     position: absolute;

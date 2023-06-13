@@ -6,6 +6,7 @@
 .quiz-nav {
   height: 40px;
   padding: 0 26px;
+  margin-bottom: 12px;
 }
 
 .quiz-nav .go-back {
@@ -25,20 +26,4 @@
   font-size: 14px;
   line-height: 17px;
   color: #d8d8d8;
-}
-
-.next-step {
-  margin: 43px 0 40px;
-  display: flex;
-  justify-content: center;
-}
-
-.next-step.fixed {
-  display: flex;
-  justify-content: center;
-  /* position: fixed; */
-  margin: 0 auto;
-  left: 0;
-  right: 0;
-  bottom: 40px;
 }

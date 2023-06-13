@@ -7,9 +7,10 @@ import html2canvas from 'html2canvas';
 import Button from '@/app/components/Button';
 import './page.scss';
 import { fetchResult } from '@/api';
+import Shadow from '@/app/components/Shadow';
 
 const screenshotId = 'screenshot';
-const ballonClassName = 'ballon';
+const ballonClassName = 'ballon_title';
 
 const onSaveAs = ({
   uri,
@@ -78,7 +79,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
   const [isSaved, setIsSaved] = useState(false);
   const [isBallon, setIsBallon] = useState(true);
 
-  const CUBE_URL = `/images/result/${type}/cube.png`;
+  const CUBE_URL = `/images/result/${type}/cube.4x.png`;
   const BG_URL = `/images/result/${type}/bg.png`;
   const CUBE_EXTENSTION_URL = (order: number) =>
     `/images/result/${type}/${gender}/${order}.png`;
@@ -105,13 +106,11 @@ export default function Page({ params }: { params: { slug: string[] } }) {
 
     const timer = setTimeout(() => {
       setisCopied((prev) => !prev);
-      console.log('after timre', isCopied);
     }, 3000);
 
     return () => {
       clearTimeout(timer);
       setisCopied(false);
-      console.log('clean up', isCopied);
     };
   }, [isCopied]);
 
@@ -120,7 +119,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
 
     const timer = setTimeout(() => {
       setIsSaved(false);
-    }, 3200);
+    }, 3000);
 
     return () => {
       clearTimeout(timer);
@@ -135,21 +134,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
       id={screenshotId}
       style={{
         background: `no-repeat center url(${BG_URL})`,
+        height: '100%',
       }}
       onClick={(e) => {
         const { target } = e;
         const el = target as Element;
 
-        if (el.tagName === 'MAIN') {
-          setIsBallon(false);
-          return;
-        }
-
-        if (
-          el.classList.contains(ballonClassName) ||
-          el.querySelector(`.${ballonClassName}`)
-        ) {
-          setIsBallon(true);
+        if (el.classList.contains(ballonClassName)) {
+          setIsBallon((prev) => !prev);
         } else {
           setIsBallon(false);
         }
@@ -157,7 +149,7 @@ export default function Page({ params }: { params: { slug: string[] } }) {
     >
       <div className='save'>
         <button className='btn' onClick={handleSave}>
-          <Image src='/images/save.svg' fill alt='' />
+          <Image src='/images/save.svg' width={20} height={20} alt='' />
         </button>
       </div>
 
@@ -176,10 +168,10 @@ export default function Page({ params }: { params: { slug: string[] } }) {
           <div className='box'>{data.survey_result_user_type_description}</div>
         </div>
         <div className='figure-container'>
-          <p>
+          <p className={ballonClassName}>
             큐브 전개도
             <div
-              className={ballonClassName}
+              className='ballon'
               style={{ visibility: isBallon ? 'visible' : 'hidden' }}
             >
               전개도를 눌러 상세페이지로 이동해 보세요.
@@ -197,9 +189,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                     <p className='brand'>
                       {data.cube_expansion[0].cube_expansion_image_name}
                     </p>
-                    <p className='product'>
-                      {data.cube_expansion[0].cube_expansion_image_description}
-                    </p>
+                    <p
+                      className='product'
+                      ref={(el) => {
+                        if (el)
+                          el.innerHTML =
+                            data.cube_expansion[0].cube_expansion_image_description;
+                      }}
+                    ></p>
                   </a>
                 </div>
                 <div className='image'>
@@ -214,16 +211,21 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                 </div>
                 <div className='text right'>
                   <a
-                    href={data.cube_expansion[1].cube_expansion_image_address}
+                    href={data.cube_expansion[2].cube_expansion_image_address}
                     target='_blank'
                     rel='noreferrer noopener'
                   >
                     <p className='brand'>
-                      {data.cube_expansion[1].cube_expansion_image_name}
+                      {data.cube_expansion[2].cube_expansion_image_name}
                     </p>
-                    <p className='product'>
-                      {data.cube_expansion[1].cube_expansion_image_description}
-                    </p>
+                    <p
+                      className='product'
+                      ref={(el) => {
+                        if (el)
+                          el.innerHTML =
+                            data.cube_expansion[2].cube_expansion_image_description;
+                      }}
+                    ></p>
                   </a>
                 </div>
               </div>
@@ -232,17 +234,22 @@ export default function Page({ params }: { params: { slug: string[] } }) {
               <div className='block'>
                 <div className='text left'>
                   <a
-                    href={data.cube_expansion[2].cube_expansion_image_address}
+                    href={data.cube_expansion[1].cube_expansion_image_address}
                     target='_blank'
                     rel='noreferrer noopener'
                   >
                     <p className='brand'>
-                      {data.cube_expansion[2].cube_expansion_image_name}
+                      {data.cube_expansion[1].cube_expansion_image_name}
                     </p>
                   </a>
-                  <p className='product'>
-                    {data.cube_expansion[2].cube_expansion_image_description}
-                  </p>
+                  <p
+                    className='product'
+                    ref={(el) => {
+                      if (el)
+                        el.innerHTML =
+                          data.cube_expansion[1].cube_expansion_image_description;
+                    }}
+                  ></p>
                 </div>
                 <div className='image border-top'>
                   <a
@@ -290,25 +297,6 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                 </div>
                 <div className='text right'>
                   <a
-                    href={data.cube_expansion[3].cube_expansion_image_address}
-                    target='_blank'
-                    rel='noreferrer noopener'
-                  >
-                    <p className='brand'>
-                      {data.cube_expansion[3].cube_expansion_image_name}
-                    </p>
-
-                    <p className='product'>
-                      {data.cube_expansion[3].cube_expansion_image_description}
-                    </p>
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className='figure'>
-              <div className='block'>
-                <div className='text left'>
-                  <a
                     href={data.cube_expansion[4].cube_expansion_image_address}
                     target='_blank'
                     rel='noreferrer noopener'
@@ -317,9 +305,38 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                       {data.cube_expansion[4].cube_expansion_image_name}
                     </p>
 
-                    <p className='product'>
-                      {data.cube_expansion[4].cube_expansion_image_description}
+                    <p
+                      className='product'
+                      ref={(el) => {
+                        if (el)
+                          el.innerHTML =
+                            data.cube_expansion[4].cube_expansion_image_description;
+                      }}
+                    ></p>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div className='figure'>
+              <div className='block'>
+                <div className='text left'>
+                  <a
+                    href={data.cube_expansion[3].cube_expansion_image_address}
+                    target='_blank'
+                    rel='noreferrer noopener'
+                  >
+                    <p className='brand'>
+                      {data.cube_expansion[3].cube_expansion_image_name}
                     </p>
+
+                    <p
+                      className='product'
+                      ref={(el) => {
+                        if (el)
+                          el.innerHTML =
+                            data.cube_expansion[3].cube_expansion_image_description;
+                      }}
+                    ></p>
                   </a>
                 </div>
                 <div className='image border-top'>
@@ -342,9 +359,14 @@ export default function Page({ params }: { params: { slug: string[] } }) {
                       {data.cube_expansion[5].cube_expansion_image_name}
                     </p>
 
-                    <p className='product'>
-                      {data.cube_expansion[5].cube_expansion_image_description}
-                    </p>
+                    <p
+                      className='product'
+                      ref={(el) => {
+                        if (el)
+                          el.innerHTML =
+                            data.cube_expansion[5].cube_expansion_image_description;
+                      }}
+                    ></p>
                   </a>
                 </div>
               </div>
@@ -381,7 +403,13 @@ export default function Page({ params }: { params: { slug: string[] } }) {
           </Button>
         </div>
         <Link href='/'>다시 해보기</Link>
-        <div className='grad'></div>
+        <Shadow
+          styles={{
+            height: '149px',
+            left: 0,
+            bottom: 0,
+          }}
+        />
       </div>
       <ToastBar show={isCopied}>링크를 저장했습니다.</ToastBar>
       <ToastBar show={isSaved}>

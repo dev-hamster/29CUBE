@@ -1,5 +1,6 @@
 interface ContentProps {
   point: number;
+  step?: number;
   selections: any[];
 }
 

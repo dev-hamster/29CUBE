@@ -57,7 +57,7 @@ function NextButton({ isActive, type, handleClick, href }: ButtonProps) {
             if (handleClick) handleClick();
           }}
         >
-          <Image src='/images/arrow.svg' width={20} height={36} alt='' />
+          <Image src='/images/arrow.svg' width={20} height={34} alt='' />
         </button>
       )}
       {type === 'link' && (

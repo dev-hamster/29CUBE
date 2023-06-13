@@ -23,6 +23,7 @@
 }
 
 .arrow {
+  border: none;
   border-radius: 100%;
   width: 36px;
   height: 36px;

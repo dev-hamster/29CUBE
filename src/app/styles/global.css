@@ -21,6 +21,7 @@ body {
 }
 
 main {
+  position: relative;
   width: 375px;
   min-width: 375px;
   margin: 0 auto;
@@ -30,4 +31,9 @@ main {
   main {
     width: 100%;
   }
+}
+
+p {
+  margin: 0;
+  padding: 0;
 }

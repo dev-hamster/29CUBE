@@ -24,6 +24,7 @@ main {
   position: relative;
   width: 375px;
   min-width: 375px;
+  height: 100vh;
   margin: 0 auto;
 }
 

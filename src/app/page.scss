@@ -45,13 +45,11 @@
 .gift {
   /* display: flex; */
   position: relative;
-  padding-top: 100%;
+  padding-top: 140%;
   overflow: hidden;
 
-  img {
-    width: fit-content !important;
-    left: 50% !important;
-    transform: translateX(-50%) !important;
+  @media (max-height: 749px) {
+    padding-top: 120%;
   }
 }
 

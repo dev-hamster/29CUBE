@@ -133,7 +133,9 @@ export default function Page({ params }: { params: { slug: string[] } }) {
       className='result'
       id={screenshotId}
       style={{
-        background: `no-repeat center url(${BG_URL})`,
+        backgroundImage: `url(${BG_URL})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundSize: 'cover',
         height: '100%',
       }}
       onClick={(e) => {

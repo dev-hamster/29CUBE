@@ -34,21 +34,26 @@ export default function Page() {
         </div>
       </div>
 
-      <div className='gift'>
-        <Shadow
-          styles={{
-            zIndex: 1,
-            height: '257px',
-            rotate: '180deg',
-          }}
-        />
-        <Image src='/images/cube.png' fill alt='' />
-        <Shadow
-          styles={{
-            bottom: 0,
-            zIndex: 1,
-          }}
-        />
+      <div className='gift-wrppaer'>
+        <div className='gift'>
+          <Shadow
+            styles={{
+              zIndex: 1,
+              top: 0,
+              height: '257px',
+              rotate: '180deg',
+            }}
+          />
+          <div className='center'>
+            <Image src='/images/cube.png' fill alt='' />
+          </div>
+          <Shadow
+            styles={{
+              bottom: 0,
+              zIndex: 1,
+            }}
+          />
+        </div>
       </div>
 
       <div className='step-button'>

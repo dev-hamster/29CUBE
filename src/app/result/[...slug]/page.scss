@@ -47,6 +47,12 @@
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
 }
 
+@media only screen and (max-width: 500px) {
+  main {
+    width: 100%;
+  }
+}
+
 main.result {
   color: #fff;
 
@@ -105,6 +111,11 @@ main.result {
   }
 
   .en_title {
+    @media (min-width: 376px) and (max-width: 500px) {
+      width: 375px;
+      margin: 0 auto 14px;
+    }
+
     padding: 0 14px;
     margin-bottom: 14px;
     height: 57px;
@@ -120,6 +131,11 @@ main.result {
   }
 
   .desc {
+    @media (min-width: 376px) and (max-width: 500px) {
+      width: 375px;
+      margin: 0 auto 30px;
+    }
+
     padding: 0 14px;
     margin-bottom: 30px;
     font-weight: 500;
@@ -132,6 +148,11 @@ main.result {
   }
 
   .figure-container {
+    @media (min-width: 376px) and (max-width: 500px) {
+      width: 375px;
+      margin: 0 auto 30px;
+    }
+
     padding: 0 16px;
     margin-bottom: 30px;
 
@@ -269,6 +290,11 @@ main.result {
   }
 
   .brand-block {
+    @media (min-width: 376px) and (max-width: 500px) {
+      width: 375px;
+      margin: 0 auto 60px;
+    }
+
     padding: 0 16px;
     margin-bottom: 60px;
     padding: 0 16px;

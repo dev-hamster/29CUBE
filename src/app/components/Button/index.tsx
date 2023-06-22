@@ -63,7 +63,7 @@ function NextButton({ isActive, type, handleClick, href }: ButtonProps) {
       {type === 'link' && (
         <Link href={href + ''}>
           <div className={`${style.arrow} ${themeStyle}`}>
-            <Image src='/images/arrow.svg' width={20} height={36} alt='' />
+            <Image src='/images/arrow.svg' width={26} height={36} alt='' />
           </div>
         </Link>
       )}

@@ -1,36 +1,20 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 29CUBE
 
-## Getting Started
+## 화면
+|홈|테스트 화면|
+|----|----|
+|<img width="240px" src="https://github.com/2Qube/29CUBE/assets/123740296/cfb59a0d-3b3d-4c52-b0cc-7d1618dd4870" />|<img width="240px" src="https://github.com/2Qube/29CUBE/assets/123740296/b3aff93e-8b71-4ed6-850d-d1810060938a" />|
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+|로딩|결과 공유|
+|---|---|
+|<img width="240px" src="https://github.com/2Qube/29CUBE/assets/123740296/9141fcb9-bc64-4d8a-9658-426ac659d74e" />|<img width="240px" src="https://github.com/2Qube/29CUBE/assets/123740296/1830317d-3619-4dc1-a74b-e66efeea8eac" />|
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-[http://localhost:3000/api/hello](http://localhost:3000/api/hello) is an endpoint that uses [Route Handlers](https://beta.nextjs.org/docs/routing/route-handlers). This endpoint can be edited in `app/api/hello/route.ts`.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 프로젝트 목표
 
-## Learn More
+## 기술 스택
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## 프로젝트 실행 방법

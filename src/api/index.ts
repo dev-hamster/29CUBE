@@ -6,7 +6,7 @@ const fetchSteps = async () => {
       'Cache-Control': 'max-age=31536000',
     },
   });
-
+ 
   return await res.json();
 };
 

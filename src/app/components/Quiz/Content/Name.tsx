@@ -1,8 +1,8 @@
+import { QuizLayout } from '@/app/components/Quiz';
 import usePageRouter from '@/app/hooks/usePageRouter';
-import { useSetRecoilState } from 'recoil';
 import { nickname } from '@/app/store';
 import { useState } from 'react';
-import { QuizLayout } from '@/app/components/Quiz';
+import { useSetRecoilState } from 'recoil';
 
 const MAX = 20;
 
